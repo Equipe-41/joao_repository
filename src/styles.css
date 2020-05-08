@@ -1,0 +1,12 @@
+@import "../node_modules/materialize-css/dist/css/materialize.css";
+
+html {
+    height:100% !important;
+} 
+
+body {
+    width: 100%;
+    min-height:100% !important;
+    background-color: #004D92;
+    padding: 4px;
+}

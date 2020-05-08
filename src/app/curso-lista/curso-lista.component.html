@@ -1,0 +1,17 @@
+<table>
+  <tr>
+    <td>Nome</td>
+    <td>Descrição</td>
+    <td>Grátis</td>
+    <td>Valor</td>
+    <td></td>
+  </tr>
+  <tr *ngFor="let curso of listaCurso">
+    <td><a routerLink="/cursoDetalhe/{{curso.ID_CURSO}}">{{curso.NOME}}</a></td>
+    <td>{{curso.DESCRICAO}}</td>
+    <td>{{curso.GRATUITO}}</td>
+    <td>{{curso.VALOR}}</td>
+    <td> <a class="waves-effect waves-light btn" routerLink="/cursoComprar/{{curso.ID_CURSO}}">Comprar</a></td>
+  </tr>
+</table>
+
