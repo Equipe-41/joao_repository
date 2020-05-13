@@ -1,17 +1,24 @@
-<table>
-  <tr>
-    <td>Nome</td>
-    <td>Descrição</td>
-    <td>Grátis</td>
-    <td>Valor</td>
-    <td></td>
-  </tr>
-  <tr *ngFor="let curso of listaCurso">
-    <td><a routerLink="/cursoDetalhe/{{curso.ID_CURSO}}">{{curso.NOME}}</a></td>
-    <td>{{curso.DESCRICAO}}</td>
-    <td>{{curso.GRATUITO}}</td>
-    <td>{{curso.VALOR}}</td>
-    <td> <a class="waves-effect waves-light btn" routerLink="/cursoComprar/{{curso.ID_CURSO}}">Comprar</a></td>
-  </tr>
-</table>
+<div *ngFor="let curso of listaCurso" class="col s12 m7 crd">
+  <h2 class="header crd-tt">{{curso.NOME}}</h2>
+  <div class="card horizontal">
+    <div class="card-image">
+      <img src={{curso.IMAGEM}}>
+    </div>
+    <div class="card-stacked">
+      <div class="card-content">
+        <p>{{curso.DESCRICAO}}</p>
+        
+      </div>
+      <div *ngIf="curso.GRATUITO == 'SIM'" class="card-content">
+        <p>GRATIS</p>
+      </div>
+      <div *ngIf="curso.GRATUITO == 'NAO'" class="card-content">
+        <p>{{curso.VALOR}}</p>
+      </div>
+      <div class="card-action">
+        <a class="waves-effect waves-light btn btn-mcrs" routerLink="/cursoComprar/{{curso.ID_CURSO}}">Comprar</a>
+      </div>
+    </div>
+  </div>
+</div>
 

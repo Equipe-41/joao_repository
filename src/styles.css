@@ -10,3 +10,20 @@ body {
     background-color: #004D92;
     padding: 4px;
 }
+
+.btn-mcrs {
+    background-color: #A1E9FF;
+    color: #012A3E;
+    font-size: 18pt;
+    font-weight: bold;
+}
+
+.crd {
+    background-color: white;
+}
+
+.crd-tt {
+    font-size: 16pt;
+    color: 004D92;
+}
+

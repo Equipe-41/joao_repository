@@ -4,4 +4,5 @@ export interface Curso {
     DESCRICAO: string;
     GRATUITO: string;
     VALOR: number;
+    IMAGEM: string;
   }
