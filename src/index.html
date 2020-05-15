@@ -13,8 +13,13 @@
 
 <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', function () {
+
     var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems, {});
+    var instancesMenu = M.Sidenav.init(elems, {});
+
+    var elems = document.querySelectorAll('.modal');
+    var instancesModal = M.Modal.init(elems, {});
+
   }); 
 </script>
 

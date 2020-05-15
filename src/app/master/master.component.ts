@@ -1,4 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { TokenService } from 'app/service/token.service';
+import { ModalService } from 'app/service/modal.service';
+import { Router, Route } from '@angular/router';
 
 @Component({
   selector: 'app-master',
@@ -9,16 +12,19 @@ export class MasterComponent implements OnInit {
 
   title = 'EAD Inclusivo';
 
-  constructor() { }
+  constructor(private _router: Router) { }
 
   ngOnInit() {
   }
 
- // ngAfterViewInit(): void {
-    // , AfterViewInit
-    //setTimeout( function() {
-    //  var elem = document.querySelector('.sidenav');
-    //  var instance = M.Sidenav.init(elem, options);
-    //}, 0)
-  //}
+  onLogout() {
+    localStorage.setItem('id_usuario', '');
+    localStorage.setItem('nome', '');
+    localStorage.setItem('tipo', '');
+    localStorage.setItem('token', '');
+
+    this._router.navigate(['/', 'usuarioLogin']);
+
+  }
+
 }

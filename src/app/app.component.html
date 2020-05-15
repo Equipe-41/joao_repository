@@ -1,4 +1,32 @@
 <app-master></app-master>
 <div class="contorno">
   <router-outlet></router-outlet>
+
+  <!-- Tela de Alert -->
+  <a id="btnModalAlert" class="waves-effect waves-light btn modal-trigger" style="display: none;"
+    href="#modalAlert">ModalAlert</a>
+  <div id="modalAlert" class="modal">
+    <div class="modal-content">
+      <h5 id="titleModalAlert">title</h5>
+      <p style="font-size: 18px;" id="mensageModalAlert">message</p>
+    </div>
+    <div class="modal-footer">
+      <button data-target="modalAlert" class="btn modal-close">Ok</button>
+    </div>
+  </div>
+  
+  <!-- Tela de Confirm -->
+  <a id="btnModalConfirm" class="waves-effect waves-light btn modal-trigger" style="display: none;"
+    href="#modalConfirm">ModalConfirm</a>
+  <div id="modalConfirm" class="modal">
+    <div class="modal-content">
+      <h5 id="titleModalConfirm">title</h5>
+      <p style="font-size: 18px;" id="mensageModalConfirm">message</p>
+    </div>
+    <div class="modal-footer">
+      <button id="simModalConfirm" data-target="modalConfirm" class="btn modal-close">Sim</button>
+      <button id="naoModalConfirm" data-target="modalConfirm" class="btn modal-close">Não</button>
+    </div>
+  </div>
+  
 </div>

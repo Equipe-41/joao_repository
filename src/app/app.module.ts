@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -15,6 +15,9 @@ import { UsuarioEsqueciComponent } from './usuario-esqueci/usuario-esqueci.compo
 import { CursoDetalheComponent } from './curso-detalhe/curso-detalhe.component';
 import { CursoComprarComponent } from './curso-comprar/curso-comprar.component';
 import { UsuarioBaseService } from './base/usuario-base.service';
+import { ModalService } from './service/modal.service';
+import { CommonModule } from '@angular/common';
+import { TokenService } from './service/token.service';
 
 @NgModule({
   declarations: [
@@ -31,10 +34,12 @@ import { UsuarioBaseService } from './base/usuario-base.service';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
+    CommonModule,
     rounting
   ],
-  providers: [ CursoBaseService, UsuarioBaseService],
+  providers: [ ModalService, TokenService, CursoBaseService, UsuarioBaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
