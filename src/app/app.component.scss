@@ -4,3 +4,30 @@
     border-radius: 15px;
     padding: 4px;
 }
+
+.modal{
+    height: 250px;
+}
+
+.modal-content {
+    height: 190px;
+}
+
+.mensageModal {
+    margin: auto; 
+    font-size: 18px;
+}
+
+.btnModal {
+    margin: 3px !important;
+}
+
+.titleModal {
+    font-size: 24px;
+}
+
+@media only screen and (min-width: 1000px) {
+    .modal{
+        width: 500px;
+    }
+  }
