@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UsuarioBaseService } from 'app/base/usuario-base.service';
+import { UsuarioBaseService } from '../base/usuario-base.service';
 import { Usuario } from './../model/usuario.model';
 import { Router } from '@angular/router';
-import { ModalService } from 'app/service/modal.service';
-import { ERROR_COLLECTOR_TOKEN } from '@angular/compiler';
-import { TokenService } from 'app/service/token.service';
+import { ModalService } from '../service/modal.service';
+import { TokenService } from '../service/token.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-usuario-login',
@@ -41,25 +41,30 @@ export class UsuarioLoginComponent implements OnInit {
       var email = this.frm.get('email').value ? this.frm.get('email').value : '';
       var senha = this.frm.get('senha').value ? this.frm.get('senha').value : '';
 
-      email = email.toUpperCase();
+      email = email.toLowerCase();
 
-      const usuario: Usuario = this._usuarioBaseService.getAutenticar(email, senha);
+      this._usuarioBaseService.getAutenticar(email, senha)
+        .pipe(take(1))
+        .subscribe((consultas: Usuario[]) => {
+          if (consultas && consultas.length > 0) {
 
-      if (usuario) {
-        console.log(usuario);
-        this.frm.reset();
+            const usuario: Usuario = consultas[0];
+            this.frm.reset();
 
-        localStorage.setItem('id_usuario', usuario.ID_USUARIO);
-        localStorage.setItem('nome', usuario.NOME);
-        localStorage.setItem('tipo', usuario.TIPO);
+            localStorage.setItem('id_usuario', usuario.ID_USUARIO);
+            localStorage.setItem('nome', usuario.NOME);
+            localStorage.setItem('tipo', usuario.TIPO);
 
-        this._token.gerar();
+            this._token.gerar();
 
-        this._router.navigate(['/', 'cursoLista']);
+            this._router.navigate(['/', 'cursoLista']);
 
-      } else {
-        this._modal.show('Usuário não cadastrado!')
-      }
+          } else {
+            this._modal.show('Usuário não cadastrado!')
+          }
+        }, result => {
+          this._modal.show('Erro ao realizar login.')
+        })
 
     } else {
       if (!this.frm.controls['email'].valid) {

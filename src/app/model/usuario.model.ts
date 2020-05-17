@@ -4,4 +4,5 @@ export interface Usuario {
     EMAIL: string;
     SENHA: string;
     TIPO: string;
+    SITUACAO: string;
   }

@@ -1,39 +1,51 @@
 import { Usuario } from './../model/usuario.model';
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Guid } from "guid-typescript";
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class UsuarioBaseService {
 
-    private tabela: Usuario[];
+    private tabela: string = 'usuario';
 
-    constructor() {
-
-        this.tabela = [
-            { ID_USUARIO: "1", NOME: "JOAO", EMAIL: "JOAO@FICR.EDU.BR", SENHA: "123", TIPO: "ALUNO" },
-            { ID_USUARIO: "2", NOME: "DANIEL", EMAIL: "DANIEL@FICR.EDU.BR", SENHA: "123", TIPO: "INSTRUTOR" },
-            { ID_USUARIO: "3", NOME: "VICTOR", EMAIL: "VICTOR@FICR.EDU.BR", SENHA: "123", TIPO: "INTERPRETE" }
-    ];
-
+    constructor(private db: AngularFirestore) {
     }
 
-    list(): Usuario[] {
-        return this.tabela;
-    }
-
-    get(id: string): Usuario {
-       return this.tabela.find(i => i.ID_USUARIO == id);
-    }
-
-    getAutenticar(email: string, senha: string): Usuario {
-        return this.tabela.find(i => i.EMAIL == email && i.SENHA == senha);
-     }
- 
-     create(entidade: Usuario) {
-
+    create(entidade: Usuario) {
+        entidade.ID_USUARIO = Guid.create().toString();
+        return this.db.collection(this.tabela).doc(entidade.ID_USUARIO).set(entidade);
     }
 
     update(entidade: Usuario) {
+        return this.db.doc(this.tabela + '/' + entidade.ID_USUARIO).update(entidade);
+    }
 
+    getPesquisaCampo(campo: string, conteudo: string) {
+        if (campo != '' && conteudo != '') {
+            return this.db.collection(this.tabela, ref => ref.where('SITUACAO', '==', 'Ativo').where(campo, '==', conteudo))
+                .snapshotChanges().pipe(
+                    map(changes => {
+                        return changes.map(p => ({ id: p.payload.doc.id, ...p.payload.doc.data() as Usuario }));
+                    })
+                );
+        } else {
+            return this.db.collection(this.tabela, ref => ref.where('SITUACAO', '==', 'Ativo'))
+                .snapshotChanges().pipe(
+                    map(changes => {
+                        return changes.map(p => ({ id: p.payload.doc.id, ...p.payload.doc.data() as Usuario }));
+                    })
+                );
+        }
+    }
+
+    getAutenticar(email: string, senha: string) {
+        return this.db.collection(this.tabela, ref => ref.where('SITUACAO', '==', 'Ativo').where('EMAIL', '==', email).where('SENHA', '==', senha))
+            .snapshotChanges().pipe(
+                map(changes => {
+                    return changes.map(p => ({ id: p.payload.doc.id, ...p.payload.doc.data() as Usuario }));
+                })
+            );
     }
 
 }

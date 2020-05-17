@@ -1,37 +1,42 @@
 import { Curso } from './../model/curso.model';
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Guid } from "guid-typescript";
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class CursoBaseService {
 
-    private tabela: Curso[];
+    private tabela: string = 'curso';
 
-    constructor() {
-
-        this.tabela = [
-            { ID_CURSO: "1", DESCRICAO: "Ângular 1", NOME: "Ângular 1", GRATUITO: "SIM", VALOR: 0 , IMAGEM: "https://lorempixel.com/100/190/nature/6"}, 
-            { ID_CURSO: "2", DESCRICAO: "Ângular 2", NOME: "Ângular 2", GRATUITO: "NAO", VALOR: 100 , IMAGEM: "https://lorempixel.com/100/190/nature/6"},
-            { ID_CURSO: "3", DESCRICAO: "Ângular 3", NOME: "Ângular 3", GRATUITO: "NAO", VALOR: 100 , IMAGEM: "https://lorempixel.com/100/190/nature/6"},
-            { ID_CURSO: "4", DESCRICAO: "Ângular 4", NOME: "Ângular 4", GRATUITO: "NAO", VALOR: 100 , IMAGEM: "https://lorempixel.com/100/190/nature/6"},
-            { ID_CURSO: "5", DESCRICAO: "Ângular 5", NOME: "Ângular 5", GRATUITO: "NAO", VALOR: 100 , IMAGEM: "https://lorempixel.com/100/190/nature/6"},
-            { ID_CURSO: "6", DESCRICAO: "Ângular 6", NOME: "Ângular 6", GRATUITO: "NAO", VALOR: 100 , IMAGEM: "https://lorempixel.com/100/190/nature/6"}
-        ];
-
-    }
-
-    list(): Curso[] {
-        return this.tabela;
-    }
-
-    get(id: string): Curso {
-       return this.tabela.find(i => i.ID_CURSO == id);
+    constructor(private db: AngularFirestore) {
     }
 
     create(entidade: Curso) {
-
+        entidade.ID_CURSO = Guid.create().toString();
+        return this.db.collection(this.tabela).doc(entidade.ID_CURSO).set(entidade);
     }
 
     update(entidade: Curso) {
+        return this.db.doc(this.tabela + '/' + entidade.ID_CURSO).update(entidade);
+    }
+
+    getPesquisaCampo(campo: string, conteudo: string) {
+        if (campo != '' && conteudo != '') {
+            return this.db.collection(this.tabela, ref => ref.where('SITUACAO', '==', 'Ativo').where(campo, '==', conteudo))
+            .snapshotChanges().pipe(
+                map(changes => {
+                    return changes.map(p => ({ id: p.payload.doc.id, ...p.payload.doc.data() as Curso }));
+                })
+            );
+        } else {
+            return this.db.collection(this.tabela, ref => ref.where('SITUACAO', '==', 'Ativo'))
+            .snapshotChanges().pipe(
+                map(changes => {
+                    return changes.map(p => ({ id: p.payload.doc.id, ...p.payload.doc.data() as Curso }));
+                })
+            );
+        }
 
     }
 

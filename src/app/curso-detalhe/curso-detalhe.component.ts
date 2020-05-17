@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Curso } from 'app/model/curso.model';
-import { CursoBaseService } from 'app/base/curso-base.service';
-import { TokenService } from 'app/service/token.service';
-import { ModalService } from 'app/service/modal.service';
+import { Curso } from '../model/curso.model';
+import { CursoBaseService } from '../base/curso-base.service';
+import { TokenService } from '../service/token.service';
+import { ModalService } from '../service/modal.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-curso-detalhe',
@@ -14,7 +15,8 @@ export class CursoDetalheComponent implements OnInit {
 
   public id_curso : string;
   curso: Curso;
-
+  sub: Subscription;
+  
   constructor(private _activatedRoute: ActivatedRoute,
     private _cursoBaseService: CursoBaseService,
     private _token: TokenService,
@@ -23,7 +25,13 @@ export class CursoDetalheComponent implements OnInit {
 
       this._activatedRoute.params.subscribe(params => this.id_curso = params['id']);
 
-    this.curso = _cursoBaseService.get(this.id_curso);
+      this.sub = this._cursoBaseService.getPesquisaCampo('ID_CURSO', this.id_curso)
+      .subscribe((consultas: Curso[]) => {
+
+        if (consultas && consultas.length > 0) {
+          this.curso = consultas[0];
+        }
+      });
 
    }
 
@@ -31,6 +39,12 @@ export class CursoDetalheComponent implements OnInit {
 
     this._token.autenticar(this._modal, this._router, true)
 
+  }
+
+  ngOnDestroy() {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
 }

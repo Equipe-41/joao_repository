@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { TokenService } from 'app/service/token.service';
-import { ModalService } from 'app/service/modal.service';
+import { TokenService } from '../service/token.service';
+import { ModalService } from '../service/modal.service';
 import { Router, Route } from '@angular/router';
 
 @Component({

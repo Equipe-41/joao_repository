@@ -1,0 +1,55 @@
+<h3 *ngIf="operacao == 'Incluir'">
+  Novo Curso
+</h3>
+<h3 *ngIf="operacao != 'Incluir'">
+  Alterar Curso
+</h3>
+
+<div class="row">
+  <form class="col s12" [formGroup]="frm">
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="nome" type="text" class="validate" maxlength="100" formControlName="nome">
+        <label for="nome">Nome</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="descricao" type="text" class="validate" maxlength="100" formControlName="descricao">
+        <label for="descricao">Descrição</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="browser-default col s12">
+        <select id="gratuito" class="validate" formControlName="gratuito">
+          <option value="Não">Não</option>
+          <option value="Sim">Sim</option>
+        </select>
+        <label>Graituito</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="valor" type="text" class="validate" maxlength="10" formControlName="valor">
+        <label for="valor">Valor</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="video" type="text" class="validate" maxlength="100" formControlName="video">
+        <label for="video">Vídeo</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <a class="waves-effect waves-light btn btn-mcrs" (click)="onSalvar()">Salvar</a>
+      <a class="waves-effect waves-light btn btn-mcrs" (click)="onCancelar()">Cancelar</a>
+    </div>
+
+  </form>
+</div>
