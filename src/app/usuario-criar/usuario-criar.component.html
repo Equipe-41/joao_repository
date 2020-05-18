@@ -1,3 +1,63 @@
-<h1>
+<h3>
   Criar Conta
-</h1>
+</h3>
+<div class="row">
+  <form class="col s12" [formGroup]="frm">
+
+    <div class="row">
+      <div class="input-field col s12">
+        <label>
+          <input name="tipo" type="radio" formControlName="tipo" />
+          <span>Aluno</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <label>
+          <input name="tipo" type="radio" formControlName="tipo" />
+          <span>Instrutor</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <label>
+          <input name="tipo" type="radio" formControlName="tipo" />
+          <span>Interprete</span>
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="nome" type="text" class="validate" maxlength="100" formControlName="nome">
+        <label for="nome">Nome</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="email" type="email" class="validate" maxlength="100" formControlName="email">
+        <label for="email">Email</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="senha" type="password" class="validate" maxlength="10" formControlName="senha">
+        <label for="senha">Senha</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="confirmarSenha" type="password" class="validate" maxlength="10" formControlName="confirmarSenha">
+        <label for="confirmarSenha">Confirmar senha</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <a class="waves-effect waves-light btn btn-mcrs" (click)="onSalvar()">Salvar</a>
+    </div>
+
+  </form>
+</div>
