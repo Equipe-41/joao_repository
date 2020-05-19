@@ -106,4 +106,8 @@ export class UsuarioCriarComponent implements OnInit {
         })
     }
   }
+
+  onCancelar() {
+    this._router.navigate(['/', 'usuarioLogin']);
+  }
 }

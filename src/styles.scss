@@ -55,17 +55,21 @@ body {
 .btn-mcrs {
     background-color: #A1E9FF;
     color: #012A3E;
-    font-size: 18pt;
-    font-weight: bold;
+    font-size: 18px;
+    margin: 3px;
 }
 
-.crd {
-    background-color: white;
+.flex-container-btn {
+    display: flex;
+    justify-content: flex-end;
 }
 
-.crd-tt {
-    font-size: 16pt;
-    color: 004D92;
+.card-title {
+    font-weight: bold !important;
+    margin: 3px;
+}
+.card-content {
+   padding: 5px !important;
 }
 
 .modal {
@@ -73,3 +77,9 @@ body {
     height: 205px;
 }
 
+.titlePage {
+    font-weight: bold;
+    font-size: 24px;
+    width: 100%;
+    text-align: center;
+}

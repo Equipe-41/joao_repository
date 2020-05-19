@@ -1,31 +1,41 @@
+<p *ngIf="tipoUsuario == 'Aluno'" class="titlePage">
+  Cursos Disponíveis
+</p>
+<p *ngIf="tipoUsuario == 'Instrutor'" class="titlePage">
+  Cursos Cadastrados
+</p>
 <div *ngIf="tipoUsuario == 'Instrutor'" class="card-action">
-  <a class="waves-effect waves-light btn btn-mcrs" routerLink="/cursoCadastro/Incluir/0">Novo Curso</a>
+  <a class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Cadastrar novo"
+    routerLink="/cursoCadastro/Incluir/0"><i class="material-icons dp48">add</i></a>
 </div>
-<div *ngFor="let curso of listaCurso" class="col s12 m7 crd">
-  <div class="card horizontal">
-    <h2 class="header crd-tt">{{curso.NOME}}</h2>
-    <div class="card-image">
-      <img src={{curso.VIDEO}}>
-    </div>
-    <div class="card-stacked">
-      <div class="card-content">
-        <p>{{curso.DESCRICAO}}</p>
+<div class="flex-container-page">
+  <div *ngFor="let curso of listaCurso" class="card horizontal crd col-md-5 col-sm-12">
 
-      </div>
-      <div *ngIf="curso.GRATUITO == 'Sim'" class="card-content">
-        <p>GRATIS</p>
-      </div>
-      <div *ngIf="curso.GRATUITO == 'Não'" class="card-content">
-        <p>{{curso.VALOR}}</p>
-      </div>
-      <div *ngIf="tipoUsuario == 'Aluno'" class="card-action">
-        <a class="waves-effect waves-light btn btn-mcrs" routerLink="/cursoComprar/{{curso.ID_CURSO}}">Comprar</a>
-      </div>
-      <div *ngIf="tipoUsuario == 'Instrutor'" class="card-action">
-        <a class="waves-effect waves-light btn btn-mcrs"
-          routerLink="/cursoCadastro/Alterar/{{curso.ID_CURSO}}">Alterar</a>
-        <a class="waves-effect waves-light btn btn-mcrs" (click)="onExcluir(curso.ID_CURSO)">Excluir</a>
-      </div>
+    <div class="card-image">
+      <img src="{{curso.VIDEO}}">
     </div>
+    <div class="card-content card-title">
+      <p>{{curso.NOME}}</p>
+    </div>
+    <div class="card-content">
+      <p>{{curso.DESCRICAO}}</p>
+    </div>
+    <div *ngIf="curso.GRATUITO == 'Sim'" class="card-content">
+      <p>GRÁTIS</p>
+    </div>
+    <div *ngIf="curso.GRATUITO == 'Não'" class="card-content">
+      <p>Valor: {{curso.VALOR}}</p>
+    </div>
+    <div *ngIf="tipoUsuario == 'Aluno'" class="card-content flex-container-btn">
+      <a class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Comprar"
+        routerLink="/cursoComprar/{{curso.ID_CURSO}}"><i class="material-icons dp48">shopping_cart</i></a>
+    </div>
+    <div *ngIf="tipoUsuario == 'Instrutor'" class="card-content flex-container-btn">
+      <a class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Alterar"
+        routerLink="/cursoCadastro/Alterar/{{curso.ID_CURSO}}"><i class="material-icons dp48">edit</i></a>
+      <a class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Excluir"
+        (click)="onExcluir(curso.ID_CURSO)"><i class="material-icons dp48">delete</i></a>
+    </div>
+
   </div>
 </div>

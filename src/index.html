@@ -25,6 +25,9 @@
     var elems = document.querySelectorAll('select');
     var instancesSelect = M.FormSelect.init(elems, {});
 
+    var elems = document.querySelectorAll('.tooltipped');
+    var instancesTooltip = M.Tooltip.init(elems, {});
+
     document.getElementById("contorno").style.minHeight = (window.innerHeight - 75) + 'px';
 
 }); 

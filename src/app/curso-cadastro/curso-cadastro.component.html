@@ -1,10 +1,9 @@
-<h3 *ngIf="operacao == 'Incluir'">
+<p *ngIf="operacao == 'Incluir'" class="titlePage">
   Novo Curso
-</h3>
-<h3 *ngIf="operacao != 'Incluir'">
+</p>
+<p *ngIf="operacao != 'Incluir'" class="titlePage">
   Alterar Curso
-</h3>
-
+</p>
 <div class="row">
   <form class="col s12" [formGroup]="frm">
 
@@ -46,9 +45,11 @@
       </div>
     </div>
 
-    <div class="row">
-      <a class="waves-effect waves-light btn btn-mcrs" (click)="onSalvar()">Salvar</a>
-      <a class="waves-effect waves-light btn btn-mcrs" (click)="onCancelar()">Cancelar</a>
+    <div class="row flex-container-btn">
+      <a class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Salvar"
+        (click)="onSalvar()"><i class="material-icons dp48">done</i></a>
+      <a class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Cancelar"
+        (click)="onCancelar()"><i class="material-icons dp48">cancel</i></a>
     </div>
 
   </form>
