@@ -8,8 +8,8 @@
   <a class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Cadastrar novo"
     routerLink="/cursoCadastro/Incluir/0"><i class="material-icons dp48">add</i></a>
 </div>
-<div class="flex-container-page">
-  <div *ngFor="let curso of listaCurso" class="card horizontal crd col-md-5 col-sm-12">
+<div class="grid-container-page">
+  <div *ngFor="let curso of listaCurso" class="card horizontal crd">
 
     <div class="card-image">
       <img src="{{curso.VIDEO}}">
@@ -31,6 +31,8 @@
         routerLink="/cursoComprar/{{curso.ID_CURSO}}"><i class="material-icons dp48">shopping_cart</i></a>
     </div>
     <div *ngIf="tipoUsuario == 'Instrutor'" class="card-content flex-container-btn">
+      <a style="margin-right: 50px;" class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Vídeos"
+        routerLink="/videoLista/{{curso.ID_CURSO}}"><i class="material-icons dp48">video_call</i></a>
       <a class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Alterar"
         routerLink="/cursoCadastro/Alterar/{{curso.ID_CURSO}}"><i class="material-icons dp48">edit</i></a>
       <a class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Excluir"

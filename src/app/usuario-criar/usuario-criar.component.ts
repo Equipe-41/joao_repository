@@ -41,8 +41,6 @@ export class UsuarioCriarComponent implements OnInit {
   }
 
   criticar(): boolean {
-
-    this.frm.controls['tipo'].setValue('Aluno');
     if (!this.frm.controls['tipo'].valid) {
       console.log(this.frm.controls['tipo']);
       this._modal.show('Tipo inválido!');

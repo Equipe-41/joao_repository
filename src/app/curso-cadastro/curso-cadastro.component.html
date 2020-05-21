@@ -1,10 +1,10 @@
-<p *ngIf="operacao == 'Incluir'" class="titlePage">
-  Novo Curso
-</p>
-<p *ngIf="operacao != 'Incluir'" class="titlePage">
-  Alterar Curso
-</p>
-<div class="row">
+<div class="row page-container">
+  <p *ngIf="operacao == 'Incluir'" class="titlePage">
+    Novo Curso
+  </p>
+  <p *ngIf="operacao != 'Incluir'" class="titlePage">
+    Alterar Curso
+  </p>
   <form class="col s12" [formGroup]="frm">
 
     <div class="row">
@@ -22,17 +22,14 @@
     </div>
 
     <div class="row">
-      <div class="browser-default col s12">
+      <div class="browser-default col m6 s12" style="margin-top: 15px;">
         <select id="gratuito" class="validate" formControlName="gratuito">
           <option value="Não">Não</option>
           <option value="Sim">Sim</option>
         </select>
         <label>Graituito</label>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="input-field col s12">
+      <div class="input-field col m6 s12">
         <input id="valor" type="text" class="validate" maxlength="10" formControlName="valor">
         <label for="valor">Valor</label>
       </div>

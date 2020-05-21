@@ -71,39 +71,72 @@ export class CursoCadastroComponent implements OnInit, OnDestroy {
     }
   }
 
+  criticar(): boolean {
+    if (!this.frm.controls['nome'].valid) {
+      this._modal.show('Nome inválido!');
+      return false;
+    }
+    if (!this.frm.controls['descricao'].valid) {
+      this._modal.show('Descrição inválida!');
+      return false;
+    }
+    if (!this.frm.controls['gratuito'].valid) {
+      this._modal.show('Gratuíto inválido!');
+      return false;
+    }
+    if (!this.frm.controls['valor'].valid) {
+      this._modal.show('Valor inválido!');
+      return false;
+    }
+    if (!this.frm.controls['video'].valid) {
+      this._modal.show('Vídeo inválido!');
+      return false;
+    }
+
+    if (!this.frm.valid) {
+      console.log(this.frm.value)
+      this._modal.show('Dados incorretos!');
+      return false;
+    }
+
+    return true;
+  }
+
   onSalvar() {
-    if (this.operacao == 'Incluir') {
-      const curso: Curso = {
-        ID_USUARIOINSTRUTOR: localStorage.getItem('id_usuario'),
-        NOME: this.frm.get('nome').value,
-        DESCRICAO: this.frm.get('descricao').value,
-        GRATUITO: this.frm.get('gratuito').value,
-        VALOR: this.frm.get('valor').value,
-        VIDEO: this.frm.get('video').value,
-        SITUACAO: 'Ativo'
+    if (this.criticar()) {
+      if (this.operacao == 'Incluir') {
+        const curso: Curso = {
+          ID_USUARIOINSTRUTOR: localStorage.getItem('id_usuario'),
+          NOME: this.frm.get('nome').value,
+          DESCRICAO: this.frm.get('descricao').value,
+          GRATUITO: this.frm.get('gratuito').value,
+          VALOR: this.frm.get('valor').value,
+          VIDEO: this.frm.get('video').value,
+          SITUACAO: 'Ativo'
+        }
+        this._cursoBaseService.create(curso)
+          .then(result => {
+            this._modal.show('Curso cadastrado com sucesso!')
+            this._router.navigate(['/', 'cursoLista']);
+          })
+          .catch(result => {
+            this._modal.show('Erro ao cadastrar curso!')
+          });
+      } else {
+        this.curso.NOME = this.frm.get('nome').value;
+        this.curso.DESCRICAO = this.frm.get('descricao').value;
+        this.curso.GRATUITO = this.frm.get('gratuito').value;
+        this.curso.VALOR = this.frm.get('valor').value;
+        this.curso.VIDEO = this.frm.get('video').value;
+        this._cursoBaseService.update(this.curso)
+          .then(result => {
+            this._modal.show('Curso alterado com sucesso!')
+            this._router.navigate(['/', 'cursoLista']);
+          })
+          .catch(result => {
+            this._modal.show('Erro ao alterar curso!')
+          });
       }
-      this._cursoBaseService.create(curso)
-        .then(result => {
-          this._modal.show('Curso cadastrado com sucesso!')
-          this._router.navigate(['/', 'cursoLista']);
-        })
-        .catch(result => {
-          this._modal.show('Erro ao cadastrar curso!')
-        });
-    } else {
-      this.curso.NOME = this.frm.get('nome').value;
-      this.curso.DESCRICAO = this.frm.get('descricao').value;
-      this.curso.GRATUITO = this.frm.get('gratuito').value;
-      this.curso.VALOR = this.frm.get('valor').value;
-      this.curso.VIDEO = this.frm.get('video').value;
-      this._cursoBaseService.update(this.curso)
-        .then(result => {
-          this._modal.show('Curso alterado com sucesso!')
-          this._router.navigate(['/', 'cursoLista']);
-        })
-        .catch(result => {
-          this._modal.show('Erro ao alterar curso!')
-        });
     }
   }
 
