@@ -21,7 +21,7 @@ export class CursoCadastroComponent implements OnInit, OnDestroy {
   public operacao: string;
   private curso: Curso;
   private sub: Subscription;
-  private frm: FormGroup;
+  public frm: FormGroup;
 
   @Input() urlImage: string = "";
 
