@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Curso } from '../model/curso.model';
 import { ActivatedRoute, Route } from '@angular/router';
 import { CursoBaseService } from '../base/curso-base.service';
@@ -22,6 +22,8 @@ export class CursoCadastroComponent implements OnInit, OnDestroy {
   private curso: Curso;
   private sub: Subscription;
   private frm: FormGroup;
+
+  @Input() urlImage: string = "";
 
   constructor(
     private frmBuilder: FormBuilder,
@@ -59,6 +61,8 @@ export class CursoCadastroComponent implements OnInit, OnDestroy {
             this.frm.controls['gratuito'].setValue(this.curso.GRATUITO);
             this.frm.controls['valor'].setValue(this.curso.VALOR);
             this.frm.controls['urlimagem'].setValue(this.curso.URLIMAGEM);
+
+            this.urlImage = this.curso.URLIMAGEM;
           }
         });
     }
@@ -145,6 +149,6 @@ export class CursoCadastroComponent implements OnInit, OnDestroy {
   }
 
   onBlur() {
-    this.curso.URLIMAGEM = this.frm.get('urlimagem').value;
+    this.urlImage = this.frm.get('urlimagem').value;
   }
 }
