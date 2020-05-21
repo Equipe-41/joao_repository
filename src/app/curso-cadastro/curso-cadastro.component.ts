@@ -45,7 +45,7 @@ export class CursoCadastroComponent implements OnInit, OnDestroy {
       descricao: ['', [Validators.required, Validators.maxLength(100)]],
       gratuito: ['Não', [Validators.required]],
       valor: ['', [Validators.required]],
-      video: ['', [Validators.required]],
+      urlimagem: ['', [Validators.required]],
     });
 
     if (this.operacao != 'Incluir') {
@@ -58,7 +58,7 @@ export class CursoCadastroComponent implements OnInit, OnDestroy {
             this.frm.controls['descricao'].setValue(this.curso.DESCRICAO);
             this.frm.controls['gratuito'].setValue(this.curso.GRATUITO);
             this.frm.controls['valor'].setValue(this.curso.VALOR);
-            this.frm.controls['video'].setValue(this.curso.VIDEO);
+            this.frm.controls['urlimagem'].setValue(this.curso.URLIMAGEM);
           }
         });
     }
@@ -88,8 +88,8 @@ export class CursoCadastroComponent implements OnInit, OnDestroy {
       this._modal.show('Valor inválido!');
       return false;
     }
-    if (!this.frm.controls['video'].valid) {
-      this._modal.show('Vídeo inválido!');
+    if (!this.frm.controls['urlimagem'].valid) {
+      this._modal.show('Url imagem inválida!');
       return false;
     }
 
@@ -111,7 +111,7 @@ export class CursoCadastroComponent implements OnInit, OnDestroy {
           DESCRICAO: this.frm.get('descricao').value,
           GRATUITO: this.frm.get('gratuito').value,
           VALOR: this.frm.get('valor').value,
-          VIDEO: this.frm.get('video').value,
+          URLIMAGEM: this.frm.get('urlimagem').value,
           SITUACAO: 'Ativo'
         }
         this._cursoBaseService.create(curso)
@@ -127,14 +127,14 @@ export class CursoCadastroComponent implements OnInit, OnDestroy {
         this.curso.DESCRICAO = this.frm.get('descricao').value;
         this.curso.GRATUITO = this.frm.get('gratuito').value;
         this.curso.VALOR = this.frm.get('valor').value;
-        this.curso.VIDEO = this.frm.get('video').value;
+        this.curso.URLIMAGEM = this.frm.get('urlimagem').value;
         this._cursoBaseService.update(this.curso)
           .then(result => {
             this._modal.show('Curso alterado com sucesso!')
             this._router.navigate(['/', 'cursoLista']);
           })
           .catch(result => {
-            this._modal.show('Erro ao alterar curso!')
+            this._modal.show('Erro ao alterar curso!' )
           });
       }
     }
@@ -142,5 +142,9 @@ export class CursoCadastroComponent implements OnInit, OnDestroy {
 
   onCancelar() {
     this._router.navigate(['/', 'cursoLista']);
+  }
+
+  onBlur() {
+    this.curso.URLIMAGEM = this.frm.get('urlimagem').value;
   }
 }

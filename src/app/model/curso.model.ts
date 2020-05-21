@@ -6,6 +6,6 @@ export interface Curso {
     DESCRICAO: string;
     GRATUITO: string;
     VALOR: number;
-    VIDEO: string;
+    URLIMAGEM: string;
     SITUACAO: string
   }

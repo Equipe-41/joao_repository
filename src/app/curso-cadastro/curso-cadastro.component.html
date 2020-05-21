@@ -37,8 +37,14 @@
 
     <div class="row">
       <div class="input-field col s12">
-        <input id="video" type="text" class="validate" maxlength="100" formControlName="video">
-        <label for="video">Vídeo</label>
+        <input id="urlimagem" type="text" class="validate" maxlength="100" (blur)="onBlur()" formControlName="urlimagem">
+        <label for="urlimagem">Url Imagem</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="divIimage col s12">
+        <img src="{{curso.URLIMAGEM}}">
       </div>
     </div>
 
