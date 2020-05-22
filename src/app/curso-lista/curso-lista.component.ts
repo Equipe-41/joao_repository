@@ -36,7 +36,7 @@ export class CursoListaComponent implements OnInit {
       conteudo = localStorage.getItem('id_usuario');
     }
 
-    this.sub = this._cursoBaseService.getPesquisaCampo( campo, conteudo)
+    this.sub = this._cursoBaseService.getPesquisaCampo(campo, conteudo)
       .subscribe((consultas: Curso[]) => {
 
         this.listaCurso = [];
@@ -66,6 +66,16 @@ export class CursoListaComponent implements OnInit {
             .catch(result => {
               this._modal.show('Erro ao excluir curso');
             })
+        })
+    }
+  }
+
+  onAdicionar(id) {
+    const curso = this.listaCurso.find(i => i.ID_CURSO == id);
+    if (curso != null) {
+      this._modal.confirm('Adicionar curso a minha lista?')
+        .subscribe(result => {
+          this._modal.show('Curso adicionado com sucesso!')
         })
     }
   }

@@ -1,0 +1,39 @@
+<div class="flex-container-img">
+  <img class="imgCurso" src="{{curso.URLIMAGEM}}">
+</div>
+<p class="titlePage">
+  {{curso.NOME}}
+</p>
+<p>
+  {{curso.DESCRICAO}}
+</p>
+<div *ngIf="tipoUsuario == 'Instrutor'" class="card-action">
+  <a class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Cadastrar novo"
+    routerLink="/videoCadastro/{{curso.ID_CURSO}}/Incluir/0"><i class="material-icons dp48">add</i></a>
+</div>
+<div class="grid-container-page">
+  <div *ngFor="let video of listaVideo" class="card crd">
+
+    <div class="card-image">
+      <a routerLink="/videoPlay/{{video.ID_VIDEO}}"><img src="{{video.URLIMAGEM}}"></a>
+    </div>
+    <div class="card-content card-title">
+      <p>{{video.NOME}}</p>
+    </div>
+    <div class="card-content">
+      <p>{{video.DESCRICAO}}</p>
+    </div>
+    <div *ngIf="tipoUsuario == 'Aluno'" class="card-content flex-container-btn">
+      <a class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Play"
+        routerLink="/videoPlay/{{video.ID_VIDEO}}"><i class="material-icons dp48">play_arrow</i></a>
+    </div>
+    <div *ngIf="tipoUsuario == 'Instrutor'" class="card-content flex-container-btn">
+      <a class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Alterar"
+        routerLink="/videoCadastro/{{curso.ID_CURSO}}/Alterar/{{video.ID_VIDEO}}"><i
+          class="material-icons dp48">edit</i></a>
+      <a class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Excluir"
+        (click)="onExcluir(video.ID_VIDEO)"><i class="material-icons dp48">delete</i></a>
+    </div>
+
+  </div>
+</div>

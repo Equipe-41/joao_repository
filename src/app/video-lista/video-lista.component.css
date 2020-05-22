@@ -1,5 +1,15 @@
 
-img {
+.flex-container-img {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.imgCurso {
+    width: 60% !important;
+}
+
+.imgVideo {
     width: 100% !important;
     height: 100% !important;
 }

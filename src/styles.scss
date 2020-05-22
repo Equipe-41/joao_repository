@@ -96,20 +96,3 @@ body {
     }
 }
   
-.grid-container-page {
-    display: grid;
-    grid-template-columns: auto;
-    grid-gap: 3px;
-}
-
-@media only screen and (min-width: 1000px) {
-    .grid-container-page {
-        grid-template-columns: auto auto auto;
-    }
-}
-
-@media only screen and (min-width: 1500px) {
-    .grid-container-page {
-        grid-template-columns: auto auto auto auto;
-    }
-}
