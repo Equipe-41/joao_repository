@@ -19,3 +19,17 @@
     justify-content: center;
 }
 
+img {
+    border-radius: 15px;
+}
+
+.flex-container-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.flex-container-lnk {
+    display: flex;
+    justify-content: flex-end;
+}
+
