@@ -97,8 +97,9 @@ body {
 }
 
 @media only screen and (max-width: 1000px) {
-    .brand {
-        font-size: 24px;
+    .brand-logo {
+        font-size: 24px !important;
+        font-weight: bold;
     }
 }
   

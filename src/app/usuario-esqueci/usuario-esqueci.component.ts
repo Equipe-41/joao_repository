@@ -10,6 +10,15 @@ export class UsuarioEsqueciComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
+    this.configMenuOff();
+    
+  }
+
+  configMenuOff() {
+    var menu = document.getElementsByClassName("opcaoMenu");
+    menu[0].setAttribute("style", "display: none !important;");
+    menu[1].setAttribute("style", "display: none !important;");
   }
 
 }

@@ -38,6 +38,14 @@ export class UsuarioCriarComponent implements OnInit {
       Validators.maxLength(10)]]
     });
 
+    this.configMenuOff();
+
+  }
+
+  configMenuOff() {
+    var menu = document.getElementsByClassName("opcaoMenu");
+    menu[0].setAttribute("style", "display: none !important;");
+    menu[1].setAttribute("style", "display: none !important;");
   }
 
   criticar(): boolean {
