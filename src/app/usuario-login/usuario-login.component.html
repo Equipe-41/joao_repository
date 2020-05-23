@@ -1,7 +1,7 @@
 <div class="row login-container">
   <form class="col s12" [formGroup]="frm">
     <div class="row">
-      <div class="divImg col s12">
+      <div class="flex-container-img col s12">
         <img src="../../assets/logo.png">
       </div>
     </div>
@@ -18,15 +18,15 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row flex-container-btn">
       <a class="waves-effect waves-light btn btn-mcrs" (click)="onEntrar()">Entrar</a>
     </div>
 
-    <div class="row">
+    <div class="row flex-container-lnk">
       <a routerLink="/usuarioCriar">Criar conta</a>
     </div>
 
-    <div class="row">
+    <div class="row flex-container-lnk">
       <a routerLink="/usuarioEsqueci">Esqueci minha senha</a>
     </div>
 

@@ -23,6 +23,9 @@ export class UsuarioLoginComponent implements OnInit {
     private _modal: ModalService,
     private _token: TokenService) { }
 
+    private atribMenu0: string;
+    private atribMenu1: string;
+
   ngOnInit() {
 
     this.frm = this.frmBuilder.group({
@@ -33,6 +36,22 @@ export class UsuarioLoginComponent implements OnInit {
       Validators.maxLength(10)]]
     });
 
+    this.configMenuOff();
+
+  }
+
+  configMenuOff() {
+    var menu = document.getElementsByClassName("opcaoMenu");
+    this.atribMenu0 = menu[0].getAttribute("style");
+    this.atribMenu1 = menu[1].getAttribute("style");
+    menu[0].setAttribute("style", "display: none !important;");
+    menu[1].setAttribute("style", "display: none !important;");
+  }
+
+  configMenuOn() {
+    var menu = document.getElementsByClassName("opcaoMenu");
+    menu[0].setAttribute("style", this.atribMenu0);
+    menu[1].setAttribute("style", this.atribMenu1);
   }
 
   onEntrar() {
@@ -58,6 +77,8 @@ export class UsuarioLoginComponent implements OnInit {
             this._token.gerar();
 
             this._router.navigate(['/', 'cursoLista']);
+
+            this.configMenuOn();
 
           } else {
             this._modal.show('Usuário não cadastrado!')

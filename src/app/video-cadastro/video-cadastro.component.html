@@ -1,0 +1,62 @@
+<div class="row page-container">
+  <p *ngIf="operacao == 'Incluir'" class="titlePage">
+    Novo Vídeo
+  </p>
+  <p *ngIf="operacao != 'Incluir'" class="titlePage">
+    Alterar Vídeo
+  </p>
+  <form class="col s12" [formGroup]="frm">
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="nome" type="text" class="validate" maxlength="100" formControlName="nome">
+        <label for="nome">Nome</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="descricao" type="text" class="validate" maxlength="100" formControlName="descricao">
+        <label for="descricao">Descrição</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="browser-default col m12 s12" style="margin-top: 15px;">
+        <select id="interprete" class="validate" formControlName="interprete">
+          <option value="Não">Não</option>
+          <option value="Sim">Sim</option>
+        </select>
+        <label>Interprete</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="urlvideo" type="text" class="validate" maxlength="100" (blur)="onBlur()" formControlName="urlvideo">
+        <label for="urlvideo">Url Vídeo</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="urlimagem" type="text" class="validate" maxlength="100" (blur)="onBlur()" formControlName="urlimagem">
+        <label for="urlimagem">Url Imagem</label>
+      </div>
+    </div>
+
+    <div *ngIf="urlImage != ''" class="row">
+      <div class="divIimage col s12">
+        <img src="{{urlImage}}">
+      </div>
+    </div>
+
+    <div class="row flex-container-btn">
+      <a class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Salvar"
+        (click)="onSalvar()"><i class="material-icons dp48">done</i></a>
+      <a class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Cancelar"
+        (click)="onCancelar()"><i class="material-icons dp48">cancel</i></a>
+    </div>
+
+  </form>
+</div>

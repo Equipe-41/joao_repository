@@ -34,7 +34,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { TextMaskModule } from 'angular2-text-mask';
 import { HttpModule } from '@angular/http';
 import { CursoBaseService } from './base/curso-base.service';
+import { VideoBaseService } from './base/video-base.service';
 import { CursoListaComponent } from './curso-lista/curso-lista.component';
+import { VideoListaComponent } from './video-lista/video-lista.component';
 import { UsuarioLoginComponent } from './usuario-login/usuario-login.component';
 import { UsuarioCriarComponent } from './usuario-criar/usuario-criar.component';
 import { UsuarioEsqueciComponent } from './usuario-esqueci/usuario-esqueci.component';
@@ -45,6 +47,7 @@ import { ModalService } from './service/modal.service';
 import { CommonModule } from '@angular/common';
 import { TokenService } from './service/token.service';
 import { CursoCadastroComponent } from './curso-cadastro/curso-cadastro.component';
+import { VideoCadastroComponent } from './video-cadastro/video-cadastro.component';
 
 @NgModule({
   declarations: [
@@ -53,12 +56,14 @@ import { CursoCadastroComponent } from './curso-cadastro/curso-cadastro.componen
     MasterComponent,
     HomeComponent,
     CursoListaComponent,
+    VideoListaComponent,
     UsuarioLoginComponent,
     UsuarioCriarComponent,
     UsuarioEsqueciComponent,
     CursoDetalheComponent,
     CursoComprarComponent,
-    CursoCadastroComponent
+    CursoCadastroComponent,
+    VideoCadastroComponent
 ],
   imports: [
     HttpClientModule,
@@ -94,7 +99,7 @@ import { CursoCadastroComponent } from './curso-cadastro/curso-cadastro.componen
     ModalModule.forRoot(),
     HttpModule
   ],
-  providers: [ ModalService, TokenService, CursoBaseService, UsuarioBaseService],
+  providers: [ ModalService, TokenService, CursoBaseService, VideoBaseService, UsuarioBaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
