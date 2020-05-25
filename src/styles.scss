@@ -44,6 +44,9 @@ $break-exlarge: 1140px;
 html {
     height:100% !important;
 } 
+div label, div label span{
+    font-size: 20px !important;
+}
 
 body {
     width: 100%;
