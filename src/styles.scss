@@ -49,16 +49,24 @@ body {
     width: 100%;
     min-height:100% !important;
     background-color: #004D92;
-    padding: 4px;
+    padding: 8px;
 }
 
-.btn-mcrs {
-    background-color: #A1E9FF;
-    color: #012A3E;
+.btn {
     font-size: 18px;
     margin: 3px;
+    background-color: #004d92;
+    color: white !important;
+    width: 7.5em;
+    height: 2.6em;
+    padding-top: 0.3em;
+    border-radius: 8px;;
 }
-
+.btn:hover{
+    background-color: #0063b9;
+    color: white;
+    text-decoration: underline;
+}
 .flex-container-btn {
     display: flex;
     justify-content: flex-end;
