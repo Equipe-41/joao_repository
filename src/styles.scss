@@ -57,6 +57,7 @@ body {
 
 .btn {
     font-size: 18px;
+    font-weight: 600;
     margin: 3px;
     background-color: #004d92;
     color: white !important;
@@ -66,10 +67,11 @@ body {
     border-radius: 8px;;
 }
 .btn:hover{
-    background-color: #0063b9;
+    background-color: #3c9ef3;
     color: white;
     text-decoration: underline;
 }
+
 .flex-container-btn {
     display: flex;
     justify-content: flex-end;

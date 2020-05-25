@@ -1,3 +1,22 @@
-<h1>
-  Esqueci Minha Senha
-</h1>
+<div class="row page-container">
+  <p class="titlePage">
+    Esqueci Minha Senha
+  </p>
+  <form class="col s12" [formGroup]="frm">
+    
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="email" type="email" class="validate" maxlength="100" formControlName="email">
+        <label for="email">Email</label>
+      </div>
+    </div>
+    
+    <div class="row flex-container-btn">
+      <a class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Salvar"
+        (click)="onSalvar()"><i class="material-icons dp48">done</i></a>
+      <a class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Cancelar"
+        (click)="onCancelar()"><i class="material-icons dp48">cancel</i></a>
+    </div>
+
+  </form>
+</div>
