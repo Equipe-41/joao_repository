@@ -13,14 +13,19 @@
 
 .flex-container-img {
     margin-top: 20px;
-    width: 222px;
-    height: 227px;
+    width: 200px;
+    height: 200px;
     display: flex;
     justify-content: center;
 }
 
 img {
-    border-radius: 15px;
+    border-radius: 10px;
+}
+
+.row {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .flex-container-btn {
@@ -31,5 +36,8 @@ img {
 .flex-container-lnk {
     display: flex;
     justify-content: flex-end;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 8px;
 }
 

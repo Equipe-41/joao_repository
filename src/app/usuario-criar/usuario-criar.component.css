@@ -1,0 +1,17 @@
+
+
+.row{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.dp48{
+    font-size: 40px;;
+}
+.nome-form{
+    margin-top: 20px !important;
+}
+.flex-container-btn{
+    margin:auto;
+    display: flex;
+    justify-content: center;
+}

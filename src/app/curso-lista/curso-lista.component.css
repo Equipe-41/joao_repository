@@ -1,17 +1,43 @@
 
-img {
-    width: 100% !important;
-    height: 100% !important;
+div{
+    margin: 0;
+    padding: 0;
+}
+.card {
+    margin: 8px;
 }
 
 .card-image {
     width: 100% !important;
 }
+.dp48{
+    font-size: 40px;
+}
+.card-title{
+    font-size: 20pt;
+    color: #012a3e;
+    text-transform: uppercase;;
+}
+
+.card-description{
+    font-size: 14pt;
+}
+
+.card-valor{
+    font-size: 14pt;
+    font-weight: 700;
+}
+
+.card-gratis{
+    color: red;
+    font-size: 16pt;
+    font-weight: 800;
+}
 
 .grid-container-page {
     display: grid;
     grid-template-columns: auto;
-    grid-gap: 3px;
+    grid-gap: 8px;
 }
 
 @media only screen and (min-width: 1000px) {

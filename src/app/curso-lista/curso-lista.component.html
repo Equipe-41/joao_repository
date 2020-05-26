@@ -17,14 +17,14 @@
     <div class="card-content card-title">
       <p>{{curso.NOME}}</p>
     </div>
-    <div class="card-content">
+    <div class="card-content card-description">
       <p>{{curso.DESCRICAO}}</p>
     </div>
-    <div *ngIf="curso.GRATUITO == 'Sim'" class="card-content">
-      <p>GRÁTIS</p>
+    <div *ngIf="curso.GRATUITO == 'Sim'" class="card-content card-gratis">
+      <p>GRÁTIS!</p>
     </div>
-    <div *ngIf="curso.GRATUITO == 'Não'" class="card-content">
-      <p>Valor: {{curso.VALOR}}</p>
+    <div *ngIf="curso.GRATUITO == 'Não'" class="card-content card-valor">
+      <p>Valor: R$ {{curso.VALOR}}</p>
     </div>
     <div *ngIf="tipoUsuario == 'Aluno'" class="card-content flex-container-btn">
       <a style="margin-right: 50px;" class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Vídeos"
