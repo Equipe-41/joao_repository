@@ -1,15 +1,31 @@
-<h1>
-  Comprar Curso
-</h1>
-
-<div class="row">
-  <label>{{curso.NOME}}</label>
+<div class="titlePage"><p>Comprar Curso</p></div>
+<div>
+  <img src="{{curso.URLIMAGEM}}" alt="">
+</div>
+<div class="curso-title">
+  <p>{{curso.NOME}}</p>
+</div>
+<!--
+  Deveria haver um subtítulo que seria menor que a descrição e que seria exibido no
+  card. A descrição só seria exibido dentro do "Comprar Curso" e daria maior detalhes
+  sobre o curso.
+-->
+<div class="curso-description">
+  <p>{{curso.DESCRICAO}}</p>
 </div>
 
-<div class="row">
-  <label>{{curso.DESCRICAO}}</label>
+<div class="curso-price">
+  <p>Valor: R$ {{curso.VALOR}}</p>
 </div>
-
-<div class="row">
-  <label>{{curso.VALOR}}</label>
+<!--
+  Seria interessante exibir aqui as características inclusivas do curso.
+  LIBRAS EM 1º PLANO,
+  LIBRAS EM SEGUNDO PLANO,
+  LEGENDA,
+  VIDEO SEM FALA,
+  ENQUADRAMENTO PARA LEITURA LABIAL.
+-->
+<div class="btn-comprar">
+  <a class="waves-effect waves-light btn btn-mcrs" (click)="onComprar()">Comprar</a>
+  <!-- Verificar se onComprar() está ativo -->
 </div>

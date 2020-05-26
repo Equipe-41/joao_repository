@@ -1,0 +1,23 @@
+img{
+    width: 100%;
+}
+.curso-title{
+    font-size: 24pt;
+    font-weight: 700;
+    color: #012a3e;
+}
+
+.curso-description{
+    font-size: 14pt;
+}
+
+.curso-price{
+    font-size: 14pt;
+    font-weight: 600;
+}
+.btn-comprar{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
