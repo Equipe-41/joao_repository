@@ -98,7 +98,6 @@ export class CursoCadastroComponent implements OnInit, OnDestroy {
     }
 
     if (!this.frm.valid) {
-      console.log(this.frm.value)
       this._modal.show('Dados incorretos!');
       return false;
     }
@@ -135,7 +134,7 @@ export class CursoCadastroComponent implements OnInit, OnDestroy {
         this._cursoBaseService.update(this.curso)
           .then(result => {
             this._modal.show('Curso alterado com sucesso!')
-            this._router.navigate(['/', 'cursoLista']);
+            this._router.navigate(['/', 'cursoLista', 'Não']);
           })
           .catch(result => {
             this._modal.show('Erro ao alterar curso!' )
@@ -145,7 +144,7 @@ export class CursoCadastroComponent implements OnInit, OnDestroy {
   }
 
   onCancelar() {
-    this._router.navigate(['/', 'cursoLista']);
+    this._router.navigate(['/', 'cursoLista', 'Não']);
   }
 
   onBlur() {

@@ -50,7 +50,6 @@ export class UsuarioCriarComponent implements OnInit {
 
   criticar(): boolean {
     if (!this.frm.controls['tipo'].valid) {
-      console.log(this.frm.controls['tipo']);
       this._modal.show('Tipo inválido!');
       return false;
     }
@@ -76,7 +75,6 @@ export class UsuarioCriarComponent implements OnInit {
     }
 
     if (!this.frm.valid) {
-      console.log(this.frm.value)
       this._modal.show('Dados incorretos!');
       return false;
     }

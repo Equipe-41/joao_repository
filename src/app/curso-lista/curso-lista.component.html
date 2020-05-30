@@ -1,4 +1,7 @@
-<p *ngIf="tipoUsuario == 'Aluno'" class="titlePage">
+<p *ngIf="Matriculado == 'Sim' && tipoUsuario == 'Aluno'" class="titlePage">
+  Meus Cursos
+</p>
+<p *ngIf="Matriculado == 'Não' && tipoUsuario == 'Aluno'" class="titlePage">
   Cursos Disponíveis
 </p>
 <p *ngIf="tipoUsuario == 'Instrutor'" class="titlePage">
@@ -27,11 +30,11 @@
       <p>Valor: R$ {{curso.VALOR}}</p>
     </div>
     <div *ngIf="tipoUsuario == 'Aluno'" class="card-content flex-container-btn">
-      <a style="margin-right: 50px;" class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Vídeos"
+      <a *ngIf="Matriculado == 'Sim'" style="margin-right: 50px;" class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Vídeos"
         routerLink="/videoLista/{{curso.ID_CURSO}}"><i class="material-icons dp48">play_arrow</i></a>
-      <a *ngIf="curso.GRATUITO == 'Sim'" class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Adicionar"
+      <a *ngIf="Matriculado == 'Não' && curso.GRATUITO == 'Sim'" class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Adicionar"
       (click)="onAdicionar(curso.ID_CURSO)"><i class="material-icons dp48">add</i></a>
-      <a *ngIf="curso.GRATUITO == 'Não'" class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Comprar"
+      <a *ngIf="Matriculado == 'Não' && curso.GRATUITO == 'Não'" class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Comprar"
         routerLink="/cursoComprar/{{curso.ID_CURSO}}"><i class="material-icons dp48">shopping_cart</i></a>
     </div>
     <div *ngIf="tipoUsuario == 'Instrutor'" class="card-content flex-container-btn">

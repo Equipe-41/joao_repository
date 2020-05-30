@@ -3,8 +3,10 @@ import { CursoBaseService } from '../base/curso-base.service';
 import { Curso } from './../model/curso.model';
 import { TokenService } from '../service/token.service';
 import { ModalService } from '../service/modal.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { MatriculaBaseService } from '../base/matricula-base.service';
+import { Matricula } from '../model/matricula.model';
 
 @Component({
   selector: 'app-curso-lista',
@@ -15,13 +17,25 @@ export class CursoListaComponent implements OnInit {
 
   tipoUsuario: string = localStorage.getItem('tipo');
   sub: Subscription;
+  sub2: Subscription;
 
   listaCurso: Curso[];
-  constructor(private _cursoBaseService: CursoBaseService,
+  listaMatricula: Matricula[];
+
+  Matriculado: string;
+
+  constructor(
+    private _cursoBaseService: CursoBaseService,
+    private _matriculaBaseService: MatriculaBaseService,
+    private _activatedRoute: ActivatedRoute,
     private _token: TokenService,
     private _modal: ModalService,
     private _router: Router) {
 
+    this._activatedRoute.params.subscribe(params => this.Matriculado = params['matriculado']);
+    if (this.Matriculado == undefined) {
+      this.Matriculado = 'Não';
+    }
   }
 
   ngOnInit() {
@@ -36,20 +50,52 @@ export class CursoListaComponent implements OnInit {
       conteudo = localStorage.getItem('id_usuario');
     }
 
-    this.sub = this._cursoBaseService.getPesquisaCampo(campo, conteudo)
-      .subscribe((consultas: Curso[]) => {
+    if (localStorage.getItem('tipo') == 'Aluno') {
+      this.sub = this._matriculaBaseService.getPesquisaCampo('ID_USUARIOALUNO', localStorage.getItem('id_usuario'))
+        .subscribe((consultas: Matricula[]) => {
+          this.listaMatricula = [];
+          if (consultas && consultas.length > 0) {
+            this.listaMatricula = consultas;
 
-        this.listaCurso = [];
-        if (consultas && consultas.length > 0) {
-          this.listaCurso = consultas;
-        }
-      });
+            this.sub2 = this._cursoBaseService.getPesquisaCampo(campo, conteudo)
+              .subscribe((consultas: Curso[]) => {
+                this.listaCurso = [];
+                if (consultas && consultas.length > 0) {
+
+                  consultas.forEach((item: Curso) => {
+                    if (this.Matriculado == 'Sim') {
+                      if (this.listaMatricula.find(i => i.ID_CURSO == item.ID_CURSO) != null) {
+                        this.listaCurso.push(item);
+                      }
+                    } else {
+                      if (this.listaMatricula.find(i => i.ID_CURSO == item.ID_CURSO) == null) {
+                        this.listaCurso.push(item);
+                      }
+                    }
+                  })
+                }
+              });
+
+          }
+        });
+    } else {
+      this.sub = this._cursoBaseService.getPesquisaCampo(campo, conteudo)
+        .subscribe((consultas: Curso[]) => {
+          this.listaCurso = [];
+          if (consultas && consultas.length > 0) {
+            this.listaCurso = consultas;
+          }
+        });
+    }
 
   }
 
   ngOnDestroy() {
     if (this.sub) {
       this.sub.unsubscribe();
+    }
+    if (this.sub2) {
+      this.sub2.unsubscribe();
     }
   }
 
@@ -75,7 +121,18 @@ export class CursoListaComponent implements OnInit {
     if (curso != null) {
       this._modal.confirm('Adicionar curso a minha lista?')
         .subscribe(result => {
-          this._modal.show('Curso adicionado com sucesso!')
+
+          const matricula: Matricula = {
+            ID_CURSO: id,
+            ID_USUARIOALUNO: localStorage.getItem('id_usuario')
+          }
+          this._matriculaBaseService.create(matricula)
+            .then(result => {
+              this._modal.show('Curso adicionado com sucesso!')
+            })
+            .catch(result => {
+              this._modal.show('Erro ao adicionar curso!')
+            });
         })
     }
   }

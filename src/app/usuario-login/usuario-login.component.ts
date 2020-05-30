@@ -23,8 +23,9 @@ export class UsuarioLoginComponent implements OnInit {
     private _modal: ModalService,
     private _token: TokenService) { }
 
-    private atribMenu0: string;
-    private atribMenu1: string;
+  private atribMenu0: string;
+  private atribMenu1: string;
+  private atribMatriculado: string;
 
   ngOnInit() {
 
@@ -52,6 +53,14 @@ export class UsuarioLoginComponent implements OnInit {
     var menu = document.getElementsByClassName("opcaoMenu");
     menu[0].setAttribute("style", this.atribMenu0);
     menu[1].setAttribute("style", this.atribMenu1);
+    var matriculado = document.getElementsByClassName("opcaoMenuMatriculado");
+    if (localStorage.getItem('tipo') == 'Aluno') {
+      matriculado[0].setAttribute("style", "display: block !important;");
+      matriculado[1].setAttribute("style", "display: block !important;");
+    } else {
+      matriculado[0].setAttribute("style", "display: none !important;");
+      matriculado[1].setAttribute("style", "display: none !important;");
+    }
   }
 
   onEntrar() {
@@ -76,7 +85,7 @@ export class UsuarioLoginComponent implements OnInit {
 
             this._token.gerar();
 
-            this._router.navigate(['/', 'cursoLista']);
+            this._router.navigate(['/', 'cursoLista', 'Não']);
 
             this.configMenuOn();
 

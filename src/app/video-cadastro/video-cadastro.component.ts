@@ -100,7 +100,6 @@ export class VideoCadastroComponent implements OnInit, OnDestroy {
     }
 
     if (!this.frm.valid) {
-      console.log(this.frm.value)
       this._modal.show('Dados incorretos!');
       return false;
     }

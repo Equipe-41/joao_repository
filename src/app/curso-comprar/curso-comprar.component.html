@@ -1,31 +1,105 @@
-<div class="titlePage"><p>Comprar Curso</p></div>
-<div>
-  <img src="{{curso.URLIMAGEM}}" alt="">
-</div>
-<div class="curso-title">
-  <p>{{curso.NOME}}</p>
-</div>
-<!--
-  Deveria haver um subtítulo que seria menor que a descrição e que seria exibido no
-  card. A descrição só seria exibido dentro do "Comprar Curso" e daria maior detalhes
-  sobre o curso.
--->
-<div class="curso-description">
-  <p>{{curso.DESCRICAO}}</p>
-</div>
+<div class="page-container">
+  <div class="titlePage">
+    <p>Comprar Curso</p>
+  </div>
+  <div>
+    <img src="{{curso.URLIMAGEM}}" alt="">
+  </div>
+  <div class="curso-title">
+    <p>{{curso.NOME}}</p>
+  </div>
+  <!--
+    Deveria haver um subtítulo que seria menor que a descrição e que seria exibido no
+    card. A descrição só seria exibido dentro do "Comprar Curso" e daria maior detalhes
+    sobre o curso.
+  -->
+  <div class="curso-description">
+    <p>{{curso.DESCRICAO}}</p>
+  </div>
 
-<div class="curso-price">
-  <p>Valor: R$ {{curso.VALOR}}</p>
-</div>
-<!--
-  Seria interessante exibir aqui as características inclusivas do curso.
-  LIBRAS EM 1º PLANO,
-  LIBRAS EM SEGUNDO PLANO,
-  LEGENDA,
-  VIDEO SEM FALA,
-  ENQUADRAMENTO PARA LEITURA LABIAL.
--->
-<div class="btn-comprar">
-  <a class="waves-effect waves-light btn btn-mcrs" (click)="onComprar()">Comprar</a>
-  <!-- Verificar se onComprar() está ativo -->
+  <div class="curso-price">
+    <p>Valor: R$ {{curso.VALOR}}</p>
+  </div>
+  <!--
+    Seria interessante exibir aqui as características inclusivas do curso.
+    LIBRAS EM 1º PLANO,
+    LIBRAS EM SEGUNDO PLANO,
+    LEGENDA,
+    VIDEO SEM FALA,
+    ENQUADRAMENTO PARA LEITURA LABIAL.
+  -->
+
+  <form class="col s12" [formGroup]="frm">
+
+    <div class="row">
+      <div class="input-field col s12">
+        <select id="bandeira" class="validate" formControlName="bandeira">
+          <option value="Mastercard">Mastercard</option>
+          <option value="Visa">Visa</option>
+          <option value="Hipercard">Hipercard</option>
+        </select>
+        <label>Bandeira do cartão</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="nome" type="text" class="validate" maxlength="100" formControlName="nome">
+        <label for="nome">Nome do titular</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="numerocartao" type="text" class="validate" maxlength="100" formControlName="numerocartao">
+        <label for="numerocartao">Número do cartão</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="browser-default col m2 s12" style="margin-top: 15px;">
+        <select id="validadeMes" class="validate" style="width: 50% !important;" formControlName="validadeMes">
+          <option value="01">01</option>
+          <option value="02">02</option>
+          <option value="03">03</option>
+          <option value="04">04</option>
+          <option value="05">05</option>
+          <option value="06">06</option>
+          <option value="07">07</option>
+          <option value="08">08</option>
+          <option value="09">09</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
+        <label>Validade (Mês/Ano)</label>
+      </div>
+
+      <div class="browser-default col m4 s12" style="margin-top: 15px;">
+        <select id="validadeAno" class="validate" style="width: 50% !important;" formControlName="validadeAno">
+          <option value="20">20</option>
+          <option value="21">21</option>
+          <option value="22">22</option>
+          <option value="23">23</option>
+          <option value="24">24</option>
+          <option value="25">25</option>
+          <option value="26">26</option>
+          <option value="27">27</option>
+          <option value="28">28</option>
+          <option value="29">29</option>
+        </select>
+      </div>
+
+      <div class="input-field col m6 s12">
+        <input id="csv" type="text" class="validate" maxlength="3" formControlName="csv">
+        <label for="csv">CSV</label>
+      </div>
+    </div>
+
+    <div class="btn-comprar">
+      <a class="waves-effect waves-light btn btn-mcrs" (click)="onComprar()">Comprar</a>
+      <!-- Verificar se onComprar() está ativo -->
+    </div>
+
+  </form>
 </div>

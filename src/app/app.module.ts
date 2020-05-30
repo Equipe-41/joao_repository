@@ -34,6 +34,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { TextMaskModule } from 'angular2-text-mask';
 import { HttpModule } from '@angular/http';
 import { CursoBaseService } from './base/curso-base.service';
+import { MatriculaBaseService } from './base/matricula-base.service';
 import { VideoBaseService } from './base/video-base.service';
 import { CursoListaComponent } from './curso-lista/curso-lista.component';
 import { VideoListaComponent } from './video-lista/video-lista.component';
@@ -99,7 +100,14 @@ import { VideoCadastroComponent } from './video-cadastro/video-cadastro.componen
     ModalModule.forRoot(),
     HttpModule
   ],
-  providers: [ ModalService, TokenService, CursoBaseService, VideoBaseService, UsuarioBaseService],
+  providers: [ 
+    ModalService, 
+    TokenService, 
+    CursoBaseService, 
+    MatriculaBaseService, 
+    VideoBaseService, 
+    UsuarioBaseService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
