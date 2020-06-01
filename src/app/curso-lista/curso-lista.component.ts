@@ -54,29 +54,26 @@ export class CursoListaComponent implements OnInit {
       this.sub = this._matriculaBaseService.getPesquisaCampo('ID_USUARIOALUNO', localStorage.getItem('id_usuario'))
         .subscribe((consultas: Matricula[]) => {
           this.listaMatricula = [];
-          if (consultas && consultas.length > 0) {
-            this.listaMatricula = consultas;
+          this.listaMatricula = consultas;
 
-            this.sub2 = this._cursoBaseService.getPesquisaCampo(campo, conteudo)
-              .subscribe((consultas: Curso[]) => {
-                this.listaCurso = [];
-                if (consultas && consultas.length > 0) {
+          this.sub2 = this._cursoBaseService.getPesquisaCampo(campo, conteudo)
+            .subscribe((consultas: Curso[]) => {
+              this.listaCurso = [];
+              if (consultas && consultas.length > 0) {
 
-                  consultas.forEach((item: Curso) => {
-                    if (this.Matriculado == 'Sim') {
-                      if (this.listaMatricula.find(i => i.ID_CURSO == item.ID_CURSO) != null) {
-                        this.listaCurso.push(item);
-                      }
-                    } else {
-                      if (this.listaMatricula.find(i => i.ID_CURSO == item.ID_CURSO) == null) {
-                        this.listaCurso.push(item);
-                      }
+                consultas.forEach((item: Curso) => {
+                  if (this.Matriculado == 'Sim') {
+                    if (this.listaMatricula.find(i => i.ID_CURSO == item.ID_CURSO) != null) {
+                      this.listaCurso.push(item);
                     }
-                  })
-                }
-              });
-
-          }
+                  } else {
+                    if (this.listaMatricula.find(i => i.ID_CURSO == item.ID_CURSO) == null) {
+                      this.listaCurso.push(item);
+                    }
+                  }
+                })
+              }
+            });
         });
     } else {
       this.sub = this._cursoBaseService.getPesquisaCampo(campo, conteudo)
