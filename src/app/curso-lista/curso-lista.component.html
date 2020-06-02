@@ -1,21 +1,139 @@
-<p *ngIf="Matriculado == 'Sim' && tipoUsuario == 'Aluno'" class="titlePage">
+<!-- Para melhor compreensão, acompanhe os comentários -->
+
+
+<!--  TÍTULO DA PÁGINA -->
+
+<!-- Título da página Caso seja Aluno e esteja Matriculado -->
+<p *ngIf="Matriculado == 'Sim' && tipoUsuario == 'Aluno'" 
+class="titlePage">
   Meus Cursos
 </p>
-<p *ngIf="Matriculado == 'Não' && tipoUsuario == 'Aluno'" class="titlePage">
+
+<!-- Título da página Caso seja Aluno e não esteja Matriculado -->
+<p *ngIf="Matriculado == 'Não' && tipoUsuario == 'Aluno'" 
+class="titlePage">
   Cursos Disponíveis
 </p>
+
+<!-- Título da página Caso seja Instrutor -->
 <p *ngIf="tipoUsuario == 'Instrutor'" class="titlePage">
   Cursos Cadastrados
 </p>
+
+
+<!-- Botão Adicionar Curso, caso seja Instrutor. -->
+
 <div *ngIf="tipoUsuario == 'Instrutor'" class="card-action">
   <a class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Cadastrar novo"
     routerLink="/cursoCadastro/Incluir/0"><i class="material-icons dp48">add</i></a>
 </div>
+
+
+<!-- CARDS DA PÁGINA-->
+
 <div class="grid-container-page">
+  
+  <!-- Repetir esse card para todos os itens em listaCurso-->
+  <div *ngFor="let curso of listaCurso" class="card">
+    
+    <!-- Imagem do card -->
+    <div class="row">
+      <div class="img-crd col s12 m4">
+        <a routerLink="/cursoDetalhe/{{curso.ID_CURSO}}"><img src="{{curso.URLIMAGEM}}" alt=""></a>
+      </div>
+    </div>
+
+    <!-- Título e descrição do card -->
+    <div class="row">
+      <div class="crd-txt col s12 m8">
+        <span class="card-title">{{curso.NOME}}</span>
+        <p>{{curso.DESCRICAO}}</p>
+      </div>
+    </div>
+
+    <!-- Preço do curso-->
+    <div class="row">
+      <div class="col s12 m12">
+        <div *ngIf="curso.GRATUITO == 'Sim'" class="card-content card-gratis">
+          <p>GRÁTIS!</p>
+        </div>
+        <div *ngIf="curso.GRATUITO == 'Não'" class="card-content card-valor">
+          <p>Valor: R$ {{curso.VALOR}}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botões de ação do card, Caso Aluno -->
+
+    <!-- Botão de 'play' desativado por ser desnecessário nesta página -->
+    <div *ngIf="tipoUsuario == 'Aluno'">
+      <a *ngIf="Matriculado == 'Sim'" style="margin-right: 50px;"
+         class="btn-crd btn-floating btn waves-effect waves-light blue halfway-fab" 
+         data-position="top" 
+         data-tooltip="Vídeos"
+         routerLink="/videoLista/{{curso.ID_CURSO}}">
+           <i class="material-icons dp48">play_arrow</i>
+      </a> <!-- Deveria ser apagado? -->
+
+      <!-- Botão de Adicionar, caso o curso seja GRATIS -->
+      <a *ngIf="Matriculado == 'Não' && curso.GRATUITO == 'Sim'" 
+         class="btn-crd btn-floating btn waves-effect waves-light blue halfway-fab" 
+         data-position="top" 
+         data-tooltip="Adicionar"
+         (click)="onAdicionar(curso.ID_CURSO)">
+           <i class="material-icons dp48">add</i>
+      </a>
+
+      <!-- Botão de comprar -->
+      <a *ngIf="Matriculado == 'Não' && curso.GRATUITO == 'Não'" 
+         class="btn-crd btn-floating btn waves-effect waves-light blue halfway-fab" 
+         data-position="top" 
+         data-tooltip="Comprar"
+         routerLink="/cursoComprar/{{curso.ID_CURSO}}">
+           <i class="material-icons dp48">shopping_cart</i>
+      </a>
+    </div>
+
+    <!-- Botões de ação do card, Caso Instrutor -->
+    <div *ngIf="tipoUsuario == 'Instrutor'">
+
+      <!-- Botão de Adicionar Vídeos ao Curso-->
+      <a class="btn-02 btn-crd btn-floating btn waves-effect waves-light teal halfway-fab" 
+         data-position="top" 
+         data-tooltip="Vídeos"
+         routerLink="/videoLista/{{curso.ID_CURSO}}">
+           <i class="material-icons dp48">video_call</i>
+      </a>
+      <!-- Botão Editar Curso -->
+      <a class=" btn-03 btn-crd btn-floating btn waves-effect waves-light blue halfway-fab" 
+         data-position="top" 
+         data-tooltip="Alterar"
+         routerLink="/cursoCadastro/Alterar/{{curso.ID_CURSO}}">
+           <i class="material-icons dp48">edit</i>
+      </a>
+      
+      <!-- Botão Deletar Curso -->
+      <a class="btn-crd btn-floating btn waves-effect waves-light red accent-4 halfway-fab"
+         data-tooltip="Excluir"
+         (click)="onExcluir(curso.ID_CURSO)">
+           <i class="material-icons dp48">delete</i>
+      </a>
+      
+    </div>
+
+  </div> <!-- /.card -->
+  
+
+
+
+  <!---------------------------------------------------------------\
+    A PARTIR DESTE PONTO, TODO O CÓDIGO ANTIGO ESTÁ DESATIVADO.     >
+  -----------------------------------------------------------------/
+  
   <div *ngFor="let curso of listaCurso" class="card crd">
 
     <div class="card-image">
-      <a routerLink="/videoLista/{{curso.ID_CURSO}}"><img src="{{curso.URLIMAGEM}}"></a>
+      <a routerLink="/cursoDetalhe/{{curso.ID_CURSO}}"><img src="{{curso.URLIMAGEM}}"></a>
     </div>
     <div class="card-content card-title">
       <p>{{curso.NOME}}</p>
@@ -48,3 +166,5 @@
 
   </div>
 </div>
+
+------------------------------------------------------------------------------->
