@@ -1,12 +1,14 @@
-<div class="flex-container-img">
-  <img class="imgCurso" src="{{curso.URLIMAGEM}}">
+<div class="page-container">
+  <div class="flex-container-img">
+    <img class="imgCurso" src="{{curso.URLIMAGEM}}">
+  </div>
+  <p class="titlePage">
+    {{curso.NOME}}
+  </p>
+  <p>
+    {{curso.DESCRICAO}}
+  </p>
 </div>
-<p class="titlePage">
-  {{curso.NOME}}
-</p>
-<p>
-  {{curso.DESCRICAO}}
-</p>
 <div *ngIf="tipoUsuario == 'Instrutor'" class="card-action">
   <a class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Cadastrar novo"
     routerLink="/videoCadastro/{{curso.ID_CURSO}}/Incluir/0"><i class="material-icons dp48">add</i></a>

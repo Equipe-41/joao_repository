@@ -10,6 +10,7 @@ import { CursoDetalheComponent } from "./curso-detalhe/curso-detalhe.component";
 import { CursoComprarComponent } from "./curso-comprar/curso-comprar.component";
 import { CursoCadastroComponent } from './curso-cadastro/curso-cadastro.component';
 import { VideoCadastroComponent } from './video-cadastro/video-cadastro.component';
+import { VideoPlayComponent } from './video-play/video-play.component';
 
 const routes: Routes = [
     { path: '', component: CursoListaComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
     { path: 'cursoComprar/:id', component: CursoComprarComponent},
     { path: 'videoLista/:id', component: VideoListaComponent},
     { path: 'videoCadastro/:id_curso/:operacao/:id', component: VideoCadastroComponent},
+    { path: 'videoPlay/:id', component: VideoPlayComponent},
 ];
 
 @NgModule({

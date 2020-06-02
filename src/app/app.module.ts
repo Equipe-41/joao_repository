@@ -49,6 +49,7 @@ import { CommonModule } from '@angular/common';
 import { TokenService } from './service/token.service';
 import { CursoCadastroComponent } from './curso-cadastro/curso-cadastro.component';
 import { VideoCadastroComponent } from './video-cadastro/video-cadastro.component';
+import { VideoPlayComponent } from './video-play/video-play.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { VideoCadastroComponent } from './video-cadastro/video-cadastro.componen
     CursoDetalheComponent,
     CursoComprarComponent,
     CursoCadastroComponent,
-    VideoCadastroComponent
+    VideoCadastroComponent,
+    VideoPlayComponent
 ],
   imports: [
     HttpClientModule,

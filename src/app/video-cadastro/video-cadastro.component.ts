@@ -47,7 +47,6 @@ export class VideoCadastroComponent implements OnInit, OnDestroy {
     this.frm = this.frmBuilder.group({
       nome: ['', [Validators.required, Validators.maxLength(100)]],
       descricao: ['', [Validators.required, Validators.maxLength(100)]],
-      interprete: ['Não', [Validators.required]],
       urlvideo: ['', [Validators.required]],
       urlimagem: ['', [Validators.required]],
     });
@@ -60,7 +59,6 @@ export class VideoCadastroComponent implements OnInit, OnDestroy {
             this.video = consultas[0];
             this.frm.controls['nome'].setValue(this.video.NOME);
             this.frm.controls['descricao'].setValue(this.video.DESCRICAO);
-            this.frm.controls['interprete'].setValue(this.video.ID_USUARIOINTERPRETE);
             this.frm.controls['urlvideo'].setValue(this.video.URLVIDEO);
             this.frm.controls['urlimagem'].setValue(this.video.URLIMAGEM);
 
@@ -84,10 +82,6 @@ export class VideoCadastroComponent implements OnInit, OnDestroy {
     }
     if (!this.frm.controls['descricao'].valid) {
       this._modal.show('Descrição inválida!');
-      return false;
-    }
-    if (!this.frm.controls['interprete'].valid) {
-      this._modal.show('Interprete inválido!');
       return false;
     }
     if (!this.frm.controls['urlvideo'].valid) {
@@ -114,7 +108,6 @@ export class VideoCadastroComponent implements OnInit, OnDestroy {
           ID_CURSO: this.id_curso,
           NOME: this.frm.get('nome').value,
           DESCRICAO: this.frm.get('descricao').value,
-          ID_USUARIOINTERPRETE: this.frm.get('interprete').value,
           URLVIDEO: this.frm.get('urlvideo').value,
           URLIMAGEM: this.frm.get('urlimagem').value,
           SITUACAO: 'Ativo'
@@ -130,7 +123,6 @@ export class VideoCadastroComponent implements OnInit, OnDestroy {
       } else {
         this.video.NOME = this.frm.get('nome').value;
         this.video.DESCRICAO = this.frm.get('descricao').value;
-        this.video.ID_USUARIOINTERPRETE = this.frm.get('interprete').value;
         this.video.URLVIDEO = this.frm.get('urlvideo').value;
         this.video.URLIMAGEM = this.frm.get('urlimagem').value;
         this._videoBaseService.update(this.video)
