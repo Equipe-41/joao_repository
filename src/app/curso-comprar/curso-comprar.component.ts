@@ -27,7 +27,13 @@ export class CursoComprarComponent implements OnInit, OnDestroy {
     NOME: "",
     SITUACAO: "",
     URLIMAGEM: "",
-    VALOR: 0
+    VALOR: 0,
+    LIBRAS1PLANO: "Não",
+    LIBRAS2PLANO: "Não",
+    LEGENDA: "Não",
+    VIDEOSEMFALA: "Não",
+    ENQUADRAMENTOPARALEITURALABIAL: "Não",
+    ACESSIBILIDADE: ""
   };
   sub: Subscription;
 
@@ -127,4 +133,5 @@ export class CursoComprarComponent implements OnInit, OnDestroy {
         })
     }
   }
+
 }

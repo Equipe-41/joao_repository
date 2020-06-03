@@ -25,7 +25,13 @@ export class VideoListaComponent implements OnInit {
     ID_USUARIOINSTRUTOR: "",
     GRATUITO: "",
     VALOR: 0,
-    SITUACAO: ""
+    SITUACAO: "",
+    LIBRAS1PLANO: "Não",
+    LIBRAS2PLANO: "Não",
+    LEGENDA: "Não",
+    VIDEOSEMFALA: "Não",
+    ENQUADRAMENTOPARALEITURALABIAL: "Não",
+    ACESSIBILIDADE: ""
   };
   
   sub: Subscription;

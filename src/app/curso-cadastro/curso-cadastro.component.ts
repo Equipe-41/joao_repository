@@ -48,6 +48,11 @@ export class CursoCadastroComponent implements OnInit, OnDestroy {
       gratuito: ['Não', [Validators.required]],
       valor: ['', [Validators.required]],
       urlimagem: ['', [Validators.required]],
+      libras1Plano: [false],
+      libras2Plano: [false],
+      legenda: [false],
+      videoSemFala: [false],
+      enquadramentoParaLeituraLabial: [false],
     });
 
     if (this.operacao != 'Incluir') {
@@ -61,6 +66,11 @@ export class CursoCadastroComponent implements OnInit, OnDestroy {
             this.frm.controls['gratuito'].setValue(this.curso.GRATUITO);
             this.frm.controls['valor'].setValue(this.curso.VALOR);
             this.frm.controls['urlimagem'].setValue(this.curso.URLIMAGEM);
+            this.frm.controls['libras1Plano'].setValue(this.curso.LIBRAS1PLANO == 'Sim');
+            this.frm.controls['libras2Plano'].setValue(this.curso.LIBRAS2PLANO == 'Sim');
+            this.frm.controls['legenda'].setValue(this.curso.LEGENDA == 'Sim');
+            this.frm.controls['videoSemFala'].setValue(this.curso.VIDEOSEMFALA == 'Sim');
+            this.frm.controls['enquadramentoParaLeituraLabial'].setValue(this.curso.ENQUADRAMENTOPARALEITURALABIAL == 'Sim');
 
             this.urlImage = this.curso.URLIMAGEM;
           }
@@ -115,7 +125,17 @@ export class CursoCadastroComponent implements OnInit, OnDestroy {
           GRATUITO: this.frm.get('gratuito').value,
           VALOR: this.frm.get('valor').value,
           URLIMAGEM: this.frm.get('urlimagem').value,
-          SITUACAO: 'Ativo'
+          SITUACAO: 'Ativo',
+          LIBRAS1PLANO: this.frm.get('libras1Plano').value ? "Sim" : "Não",
+          LIBRAS2PLANO: this.frm.get('libras2Plano').value ? "Sim" : "Não",
+          LEGENDA: this.frm.get('legenda').value ? "Sim" : "Não",
+          VIDEOSEMFALA: this.frm.get('videoSemFala').value ? "Sim" : "Não",
+          ENQUADRAMENTOPARALEITURALABIAL: this.frm.get('enquadramentoParaLeituraLabial').value ? "Sim" : "Não",
+          ACESSIBILIDADE: this.acessibilidade(this.frm.get('libras1Plano').value ? "Sim" : "Não", 
+          this.frm.get('libras2Plano').value ? "Sim" : "Não", 
+          this.frm.get('legenda').value ? "Sim" : "Não", 
+          this.frm.get('videoSemFala').value ? "Sim" : "Não", 
+          this.frm.get('enquadramentoParaLeituraLabial').value ? "Sim" : "Não")
         }
         this._cursoBaseService.create(curso)
           .then(result => {
@@ -131,7 +151,13 @@ export class CursoCadastroComponent implements OnInit, OnDestroy {
         this.curso.GRATUITO = this.frm.get('gratuito').value;
         this.curso.VALOR = this.frm.get('valor').value;
         this.curso.URLIMAGEM = this.frm.get('urlimagem').value;
-        this._cursoBaseService.update(this.curso)
+        this.curso.LIBRAS1PLANO = this.frm.get('libras1Plano').value ? "Sim" : "Não";
+        this.curso.LIBRAS2PLANO = this.frm.get('libras2Plano').value ? "Sim" : "Não";
+        this.curso.LEGENDA = this.frm.get('legenda').value ? "Sim" : "Não";
+        this.curso.VIDEOSEMFALA = this.frm.get('videoSemFala').value ? "Sim" : "Não";
+        this.curso.ENQUADRAMENTOPARALEITURALABIAL = this.frm.get('enquadramentoParaLeituraLabial').value ? "Sim" : "Não";
+        this.curso.ACESSIBILIDADE = this.acessibilidade(this.curso.LIBRAS1PLANO, this.curso.LIBRAS2PLANO, this.curso.LEGENDA, this.curso.VIDEOSEMFALA, this.curso.ENQUADRAMENTOPARALEITURALABIAL);
+      this._cursoBaseService.update(this.curso)
           .then(result => {
             this._modal.show('Curso alterado com sucesso!')
             this._router.navigate(['/', 'cursoLista', 'Não']);
@@ -150,4 +176,43 @@ export class CursoCadastroComponent implements OnInit, OnDestroy {
   onBlur() {
     this.urlImage = this.frm.get('urlimagem').value;
   }
+
+  acessibilidade(libras1Plano, libras2Plano, legenda, videoSemFala, enquadramentoParaLeituraLabial) {
+    var str = "";
+
+    if (libras1Plano && libras1Plano == "Sim") {
+      str = "Libras em 1o. Plano";
+    }
+
+    if (libras2Plano && libras2Plano == "Sim") {
+      if (str != "") {
+        str = str + ', '
+      }
+      str = str + "Libras em 2o. Plano";
+    }
+
+    if (legenda && legenda == "Sim") {
+      if (str != "") {
+        str = str + ', '
+      }
+      str = str + "Legenda";
+    }
+
+    if (videoSemFala && videoSemFala == "Sim") {
+      if (str != "") {
+        str = str + ', '
+      }
+      str = str + "Vídeo sem fala";
+    }
+
+    if (enquadramentoParaLeituraLabial && enquadramentoParaLeituraLabial == "Sim") {
+      if (str != "") {
+        str = str + ', '
+      }
+      str = str + "Enquadramento para leitura labial";
+    }
+    
+    return str;
+  }
+
 }

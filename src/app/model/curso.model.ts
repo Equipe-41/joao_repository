@@ -7,4 +7,10 @@ export interface Curso {
     VALOR: number;
     URLIMAGEM: string;
     SITUACAO: string
+    LIBRAS1PLANO: string;
+    LIBRAS2PLANO: string;
+    LEGENDA: string;
+    VIDEOSEMFALA: string;
+    ENQUADRAMENTOPARALEITURALABIAL: string;
+    ACESSIBILIDADE: string;
   }
