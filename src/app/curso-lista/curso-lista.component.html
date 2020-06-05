@@ -1,25 +1,83 @@
-<!-- Para melhor compreensão, acompanhe os comentários -->
+<div class="page-container">
+  <!-- Para melhor compreensão, acompanhe os comentários -->
 
 
-<!--  TÍTULO DA PÁGINA -->
+  <!--  TÍTULO DA PÁGINA -->
 
-<!-- Título da página Caso seja Aluno e esteja Matriculado -->
-<p *ngIf="Matriculado == 'Sim' && tipoUsuario == 'Aluno'" 
-class="titlePage">
-  Meus Cursos
-</p>
+  <!-- Título da página Caso seja Aluno e esteja Matriculado -->
+  <p *ngIf="Matriculado == 'Sim' && tipoUsuario == 'Aluno'" class="titlePage">
+    Meus Cursos
+  </p>
 
-<!-- Título da página Caso seja Aluno e não esteja Matriculado -->
-<p *ngIf="Matriculado == 'Não' && tipoUsuario == 'Aluno'" 
-class="titlePage">
-  Cursos Disponíveis
-</p>
+  <!-- Título da página Caso seja Aluno e não esteja Matriculado -->
+  <p *ngIf="Matriculado == 'Não' && tipoUsuario == 'Aluno'" class="titlePage">
+    Cursos Disponíveis
+  </p>
 
-<!-- Título da página Caso seja Instrutor -->
-<p *ngIf="tipoUsuario == 'Instrutor'" class="titlePage">
-  Cursos Cadastrados
-</p>
+  <!-- Título da página Caso seja Instrutor -->
+  <p *ngIf="tipoUsuario == 'Instrutor'" class="titlePage">
+    Cursos Cadastrados
+  </p>
 
+  <form class="col s12" [formGroup]="frm">
+    <i id="arrow_down" (click)="onArrowDown()" class="material-icons dp48">zoom_in</i>
+    <i id="arrow_up" (click)="onArrowUp()" style="display: none;" class="material-icons dp48">zoom_out</i>
+
+    <div id="search" style="display: none;">
+      <!-- <div class="row">
+        <div class="input-field col s12">
+          <input id="descricao" type="text" class="validate" maxlength="100" formControlName="descricao">
+          <label for="descricao">Descrição</label>
+        </div>
+      </div> -->
+      <div style="padding-left: 10px !important;">
+        <div class="row">
+          <p>
+            <label>
+              <input type="checkbox" class="filled-in" formControlName="libras1Plano" />
+              <span>Libras em 1o. Plano</span>
+            </label>
+          </p>
+        </div>
+        <div class="row">
+          <p>
+            <label>
+              <input type="checkbox" class="filled-in" formControlName="libras2Plano" />
+              <span>Libras em 2o. Plano</span>
+            </label>
+          </p>
+        </div>
+        <div class="row">
+          <p>
+            <label>
+              <input type="checkbox" class="filled-in" formControlName="legenda" />
+              <span>Legenda</span>
+            </label>
+          </p>
+        </div>
+        <div class="row">
+          <p>
+            <label>
+              <input type="checkbox" class="filled-in" formControlName="videoSemFala" />
+              <span>Vídeo sem fala</span>
+            </label>
+          </p>
+        </div>
+        <div class="row">
+          <p>
+            <label>
+              <input type="checkbox" class="filled-in" formControlName="enquadramentoParaLeituraLabial" />
+              <span>Enquadramento para leitura labial</span>
+            </label>
+          </p>
+        </div>
+      </div>
+      <a class="btn-crd btn waves-effect waves-light accent-4 halfway-fab" (click)="onPesquisar()">
+        <i class="material-icons dp48">search</i>
+      </a>
+    </div>
+  </form>
+</div>
 
 <!-- Botão Adicionar Curso, caso seja Instrutor. -->
 
@@ -32,10 +90,10 @@ class="titlePage">
 <!-- CARDS DA PÁGINA-->
 
 <div class="grid-container-page">
-  
+
   <!-- Repetir esse card para todos os itens em listaCurso-->
   <div *ngFor="let curso of listaCurso" class="card">
-    
+
     <!-- Imagem do card -->
     <div class="row">
       <div class="img-crd col s12 m4">
@@ -69,29 +127,23 @@ class="titlePage">
     <!-- Botão de 'play' desativado por ser desnecessário nesta página -->
     <div *ngIf="tipoUsuario == 'Aluno'">
       <a *ngIf="Matriculado == 'Sim'" style="margin-right: 50px;"
-         class="btn-crd btn-floating btn waves-effect waves-light blue halfway-fab" 
-         data-position="top" 
-         data-tooltip="Vídeos"
-         routerLink="/videoLista/{{curso.ID_CURSO}}">
-           <i class="material-icons dp48">play_arrow</i>
+        class="btn-crd btn-floating btn waves-effect waves-light blue halfway-fab" data-position="top"
+        data-tooltip="Vídeos" routerLink="/videoLista/{{curso.ID_CURSO}}">
+        <i class="material-icons dp48">play_arrow</i>
       </a> <!-- Deveria ser apagado? -->
 
       <!-- Botão de Adicionar, caso o curso seja GRATIS -->
-      <a *ngIf="Matriculado == 'Não' && curso.GRATUITO == 'Sim'" 
-         class="btn-crd btn-floating btn waves-effect waves-light blue halfway-fab" 
-         data-position="top" 
-         data-tooltip="Adicionar"
-         (click)="onAdicionar(curso.ID_CURSO)">
-           <i class="material-icons dp48">add</i>
+      <a *ngIf="Matriculado == 'Não' && curso.GRATUITO == 'Sim'"
+        class="btn-crd btn-floating btn waves-effect waves-light blue halfway-fab" data-position="top"
+        data-tooltip="Adicionar" (click)="onAdicionar(curso.ID_CURSO)">
+        <i class="material-icons dp48">add</i>
       </a>
 
       <!-- Botão de comprar -->
-      <a *ngIf="Matriculado == 'Não' && curso.GRATUITO == 'Não'" 
-         class="btn-crd btn-floating btn waves-effect waves-light blue halfway-fab" 
-         data-position="top" 
-         data-tooltip="Comprar"
-         routerLink="/cursoComprar/{{curso.ID_CURSO}}">
-           <i class="material-icons dp48">shopping_cart</i>
+      <a *ngIf="Matriculado == 'Não' && curso.GRATUITO == 'Não'"
+        class="btn-crd btn-floating btn waves-effect waves-light blue halfway-fab" data-position="top"
+        data-tooltip="Comprar" routerLink="/cursoComprar/{{curso.ID_CURSO}}">
+        <i class="material-icons dp48">shopping_cart</i>
       </a>
     </div>
 
@@ -99,31 +151,26 @@ class="titlePage">
     <div *ngIf="tipoUsuario == 'Instrutor'">
 
       <!-- Botão de Adicionar Vídeos ao Curso-->
-      <a class="btn-02 btn-crd btn-floating btn waves-effect waves-light teal halfway-fab" 
-         data-position="top" 
-         data-tooltip="Vídeos"
-         routerLink="/videoLista/{{curso.ID_CURSO}}">
-           <i class="material-icons dp48">video_call</i>
+      <a class="btn-02 btn-crd btn-floating btn waves-effect waves-light teal halfway-fab" data-position="top"
+        data-tooltip="Vídeos" routerLink="/videoLista/{{curso.ID_CURSO}}">
+        <i class="material-icons dp48">video_call</i>
       </a>
       <!-- Botão Editar Curso -->
-      <a class=" btn-03 btn-crd btn-floating btn waves-effect waves-light blue halfway-fab" 
-         data-position="top" 
-         data-tooltip="Alterar"
-         routerLink="/cursoCadastro/Alterar/{{curso.ID_CURSO}}">
-           <i class="material-icons dp48">edit</i>
+      <a class=" btn-03 btn-crd btn-floating btn waves-effect waves-light blue halfway-fab" data-position="top"
+        data-tooltip="Alterar" routerLink="/cursoCadastro/Alterar/{{curso.ID_CURSO}}">
+        <i class="material-icons dp48">edit</i>
       </a>
-      
+
       <!-- Botão Deletar Curso -->
-      <a class="btn-crd btn-floating btn waves-effect waves-light red accent-4 halfway-fab"
-         data-tooltip="Excluir"
-         (click)="onExcluir(curso.ID_CURSO)">
-           <i class="material-icons dp48">delete</i>
+      <a class="btn-crd btn-floating btn waves-effect waves-light red accent-4 halfway-fab" data-tooltip="Excluir"
+        (click)="onExcluir(curso.ID_CURSO)">
+        <i class="material-icons dp48">delete</i>
       </a>
-      
+
     </div>
 
   </div> <!-- /.card -->
-  
+
 
 
 

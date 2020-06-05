@@ -1,6 +1,6 @@
 import { Curso } from './../model/curso.model';
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, CollectionReference } from '@angular/fire/firestore';
 import { Guid } from "guid-typescript";
 import { map } from 'rxjs/operators';
 
@@ -22,22 +22,37 @@ export class CursoBaseService {
     }
 
     getPesquisaCampo(campo: string, conteudo: string) {
-        if (campo != '' && conteudo != '') {
-            return this.db.collection(this.tabela, ref => ref.where('SITUACAO', '==', 'Ativo').where(campo, '==', conteudo))
+        return this.db.collection(this.tabela, ref => {
+            let query: firebase.firestore.CollectionReference | firebase.firestore.Query = ref;
+            query = query.where('SITUACAO', '==', 'Ativo')
+            if (campo != '') { query = query.where(campo, '==', conteudo) };
+            return query;
+        })
             .snapshotChanges().pipe(
                 map(changes => {
                     return changes.map(p => ({ id: p.payload.doc.id, ...p.payload.doc.data() as Curso }));
                 })
             );
-        } else {
-            return this.db.collection(this.tabela, ref => ref.where('SITUACAO', '==', 'Ativo'))
-            .snapshotChanges().pipe(
-                map(changes => {
-                    return changes.map(p => ({ id: p.payload.doc.id, ...p.payload.doc.data() as Curso }));
-                })
-            );
-        }
+    }
 
+    getPesquisa(campo: string, conteudo: string, descricao: string, libras1Plano: string, libras2Plano: string, legenda: string, videoSemFala: string, enquadramentoParaLeituraLabial: string) {
+        return this.db.collection(this.tabela, ref => {
+            let query: firebase.firestore.CollectionReference | firebase.firestore.Query = ref;
+            query = query.where('SITUACAO', '==', 'Ativo')
+            if (descricao != '') { query = query.where("DESCRICAO", '>=', descricao).where("DESCRICAO", '<=', descricao + '\uf8ff') };
+            if (campo != '') { query = query.where(campo, '==', conteudo) };
+            if (libras1Plano == 'Sim') { query = query.where('LIBRAS1PLANO', '==', libras1Plano) };
+            if (libras2Plano == 'Sim') { query = query.where('LIBRAS2PLANO', '==', libras2Plano) };
+            if (legenda == 'Sim') { query = query.where('LEGENDA', '==', legenda) };
+            if (videoSemFala == 'Sim') { query = query.where('VIDEOSEMFALA', '==', videoSemFala) };
+            if (enquadramentoParaLeituraLabial == 'Sim') { query = query.where('ENQUADRAMENTOPARALEITURALABIAL', '==', enquadramentoParaLeituraLabial) };
+            return query;
+        })
+            .snapshotChanges().pipe(
+                map(changes => {
+                    return changes.map(p => ({ id: p.payload.doc.id, ...p.payload.doc.data() as Curso }));
+                })
+            );
     }
 
 }

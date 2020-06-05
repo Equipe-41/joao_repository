@@ -3,6 +3,10 @@
     padding:0;
 }
 
+.page-container {
+    margin: 0 auto;
+}
+
 .card {
     display: flow-root;
     margin-top:10px;
@@ -47,19 +51,19 @@
 
 .grid-container-page {
     display: grid;
-    grid-template-columns: auto;
+    grid-template-columns: 100%;
     grid-gap: 8px;
     padding-bottom: 5vh;
 }
 
 @media only screen and (min-width: 1000px) {
     .grid-container-page {
-        grid-template-columns: auto auto auto;
+        grid-template-columns: 33% 34% 33%;
     }
 }
 
 @media only screen and (min-width: 1500px) {
     .grid-container-page {
-        grid-template-columns: auto auto auto auto;
+        grid-template-columns: 25% 25% 25% 25%;
     }
 }

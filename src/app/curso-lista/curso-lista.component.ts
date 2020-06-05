@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatriculaBaseService } from '../base/matricula-base.service';
 import { Matricula } from '../model/matricula.model';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-curso-lista',
@@ -24,7 +25,10 @@ export class CursoListaComponent implements OnInit {
 
   Matriculado: string;
 
+  public frm: FormGroup;
+
   constructor(
+    private frmBuilder: FormBuilder,
     private _cursoBaseService: CursoBaseService,
     private _matriculaBaseService: MatriculaBaseService,
     private _activatedRoute: ActivatedRoute,
@@ -42,6 +46,29 @@ export class CursoListaComponent implements OnInit {
 
     this._token.autenticar(this._modal, this._router, true)
 
+    this.frm = this.frmBuilder.group({
+      descricao: ['', [Validators.maxLength(100)]],
+      libras1Plano: [false],
+      libras2Plano: [false],
+      legenda: [false],
+      videoSemFala: [false],
+      enquadramentoParaLeituraLabial: [false],
+    });
+
+    this.consulta("", "", "", "", "", "");
+
+  }
+
+  ngOnDestroy() {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
+    if (this.sub2) {
+      this.sub2.unsubscribe();
+    }
+  }
+
+  consulta(descricao, libras1Plano, libras2Plano, legenda, videoSemFala, enquadramentoParaLeituraLabial) {
     var campo = "";
     var conteudo = "";
 
@@ -56,7 +83,7 @@ export class CursoListaComponent implements OnInit {
           this.listaMatricula = [];
           this.listaMatricula = consultas;
 
-          this.sub2 = this._cursoBaseService.getPesquisaCampo(campo, conteudo)
+          this.sub2 = this._cursoBaseService.getPesquisa(campo, conteudo, descricao, libras1Plano, libras2Plano, legenda, videoSemFala, enquadramentoParaLeituraLabial)
             .subscribe((consultas: Curso[]) => {
               this.listaCurso = [];
               if (consultas && consultas.length > 0) {
@@ -76,7 +103,7 @@ export class CursoListaComponent implements OnInit {
             });
         });
     } else {
-      this.sub = this._cursoBaseService.getPesquisaCampo(campo, conteudo)
+      this.sub = this._cursoBaseService.getPesquisa(campo, conteudo, descricao, libras1Plano, libras2Plano, legenda, videoSemFala, enquadramentoParaLeituraLabial)
         .subscribe((consultas: Curso[]) => {
           this.listaCurso = [];
           if (consultas && consultas.length > 0) {
@@ -85,15 +112,6 @@ export class CursoListaComponent implements OnInit {
         });
     }
 
-  }
-
-  ngOnDestroy() {
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
-    if (this.sub2) {
-      this.sub2.unsubscribe();
-    }
   }
 
   onExcluir(id) {
@@ -132,6 +150,35 @@ export class CursoListaComponent implements OnInit {
             });
         })
     }
+  }
+
+  onArrowDown() {
+    var arrow_down = document.getElementById("arrow_down");
+    arrow_down.setAttribute("style", "display: none !important;");
+    var arrow_up = document.getElementById("arrow_up");
+    arrow_up.setAttribute("style", "display: block !important;");
+    var search = document.getElementById("search");
+    search.setAttribute("style", "display: block !important;");
+  }
+
+  onArrowUp() {
+    var arrow_down = document.getElementById("arrow_down");
+    arrow_down.setAttribute("style", "display: block !important;");
+    var arrow_up = document.getElementById("arrow_up");
+    arrow_up.setAttribute("style", "display: none !important;");
+    var search = document.getElementById("search");
+    search.setAttribute("style", "display: none !important;");
+    this.consulta("", "", "", "", "", "");
+  }
+
+  onPesquisar() {
+    var descricao = ""; //this.frm.get('descricao').value;
+    var libras1Plano = this.frm.get('libras1Plano').value ? "Sim" : "Não";
+    var libras2Plano = this.frm.get('libras2Plano').value ? "Sim" : "Não";
+    var legenda = this.frm.get('legenda').value ? "Sim" : "Não";
+    var videoSemFala = this.frm.get('videoSemFala').value ? "Sim" : "Não";
+    var enquadramentoParaLeituraLabial = this.frm.get('enquadramentoParaLeituraLabial').value ? "Sim" : "Não";
+    this.consulta(descricao, libras1Plano, libras2Plano, legenda, videoSemFala, enquadramentoParaLeituraLabial);
   }
 
 }
