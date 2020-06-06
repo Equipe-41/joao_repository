@@ -120,7 +120,9 @@ export class CursoComprarComponent implements OnInit, OnDestroy {
 
           const matricula: Matricula = {
             ID_CURSO: this.id_curso,
-            ID_USUARIOALUNO: localStorage.getItem('id_usuario')
+            ID_USUARIO: localStorage.getItem('id_usuario'),
+            ID_TIPO: localStorage.getItem('tipo'),
+            NOME: localStorage.getItem('nome')
           }
           this._matriculaBaseService.create(matricula)
             .then(result => {

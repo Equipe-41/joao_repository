@@ -54,7 +54,7 @@ export class UsuarioLoginComponent implements OnInit {
     menu[0].setAttribute("style", this.atribMenu0);
     menu[1].setAttribute("style", this.atribMenu1);
     var matriculado = document.getElementsByClassName("opcaoMenuMatriculado");
-    if (localStorage.getItem('tipo') == 'Aluno') {
+    if (localStorage.getItem('tipo') != 'Instrutor') {
       matriculado[0].setAttribute("style", "display: block !important;");
       matriculado[1].setAttribute("style", "display: block !important;");
     } else {

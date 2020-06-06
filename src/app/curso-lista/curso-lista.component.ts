@@ -77,8 +77,8 @@ export class CursoListaComponent implements OnInit {
       conteudo = localStorage.getItem('id_usuario');
     }
 
-    if (localStorage.getItem('tipo') == 'Aluno') {
-      this.sub = this._matriculaBaseService.getPesquisaCampo('ID_USUARIOALUNO', localStorage.getItem('id_usuario'))
+    if (localStorage.getItem('tipo') != 'Instrutor') {
+      this.sub = this._matriculaBaseService.getPesquisaCampo('ID_USUARIO', localStorage.getItem('id_usuario'))
         .subscribe((consultas: Matricula[]) => {
           this.listaMatricula = [];
           this.listaMatricula = consultas;
@@ -139,11 +139,14 @@ export class CursoListaComponent implements OnInit {
 
           const matricula: Matricula = {
             ID_CURSO: id,
-            ID_USUARIOALUNO: localStorage.getItem('id_usuario')
+            ID_USUARIO: localStorage.getItem('id_usuario'),
+            ID_TIPO: localStorage.getItem('tipo'),
+            NOME: localStorage.getItem('nome')
           }
           this._matriculaBaseService.create(matricula)
             .then(result => {
               this._modal.show('Curso adicionado com sucesso!')
+              this._router.navigate(['/', 'cursoLista', 'Sim']);
             })
             .catch(result => {
               this._modal.show('Erro ao adicionar curso!')
