@@ -1,0 +1,42 @@
+.chatTabela {
+    margin: 0 auto;
+    height: 90%;
+    background-color: rgb(250, 244, 244);
+}
+
+.chatPainel {
+    height: 100%; 
+    width: 100%; 
+    overflow-x: auto;
+}
+
+.chatDestino {
+    margin: 10px;
+    width: 70%;
+    background-color: #FFF8F8;
+}
+
+.chatOrigem {
+    margin: 10px;
+    width: 70%;
+    background-color: #F8FAFF;
+}
+
+.chatMensagem {
+    font-size: 1.30rem;
+    padding: 5px;
+}
+
+.chatNome {
+    font-size: 0.75rem;
+    padding: 5px;
+}
+
+.chatDtHr {
+    font-size: 0.75rem;
+    padding: 5px;
+}
+
+input {
+    text-transform: none !important;
+}

@@ -34,6 +34,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { TextMaskModule } from 'angular2-text-mask';
 import { HttpModule } from '@angular/http';
 import { CursoBaseService } from './base/curso-base.service';
+import { ChatBaseService } from './base/chat-base.service';
 import { MatriculaBaseService } from './base/matricula-base.service';
 import { VideoBaseService } from './base/video-base.service';
 import { CursoListaComponent } from './curso-lista/curso-lista.component';
@@ -50,6 +51,7 @@ import { TokenService } from './service/token.service';
 import { CursoCadastroComponent } from './curso-cadastro/curso-cadastro.component';
 import { VideoCadastroComponent } from './video-cadastro/video-cadastro.component';
 import { VideoPlayComponent } from './video-play/video-play.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,8 @@ import { VideoPlayComponent } from './video-play/video-play.component';
     CursoComprarComponent,
     CursoCadastroComponent,
     VideoCadastroComponent,
-    VideoPlayComponent
+    VideoPlayComponent,
+    ChatComponent
 ],
   imports: [
     HttpClientModule,
@@ -106,6 +109,7 @@ import { VideoPlayComponent } from './video-play/video-play.component';
     ModalService, 
     TokenService, 
     CursoBaseService, 
+    ChatBaseService, 
     MatriculaBaseService, 
     VideoBaseService, 
     UsuarioBaseService

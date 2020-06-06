@@ -1,0 +1,51 @@
+<section>
+    <p class="titlePage">
+        Chat
+    </p>
+    <table style="height: 600px;" class="chatTabela col-md-6 col-sm-12">
+        <tr>
+            <td>
+                <div class="chatPainel">
+                    <div *ngFor="let chat of chatList">
+                        <table *ngIf="chat.ID_USUARIO != id_usuario" class="chatDestino">
+                            <tr>
+                                <td class="chatNome"><span>{{chat.TIPO}}: {{chat.NOME}}</span></td>
+                            </tr>
+                            <tr>
+                                <td class="chatMensagem"><span>{{chat.MENSAGEM}}</span></td>
+                            </tr>
+                            <tr>
+                                <td class="chatDtHr" align="right">
+                                    <span>{{chat.DATACADASTRO | date:'dd/MM/yyyy HH:mm'}}</span></td>
+                            </tr>
+                        </table>
+
+                        <table align="right" *ngIf="chat.ID_USUARIO == id_usuario" class="chatOrigem">
+                            <tr>
+                                <td class="chatNome"><span>Você</span></td>
+                            </tr>
+                            <tr>
+                                <td class="chatMensagem"><span>{{chat.MENSAGEM}}</span></td>
+                            </tr>
+                            <tr>
+                                <td class="chatDtHr" align="right">
+                                    <span>{{chat.DATACADASTRO | date:'dd/MM/yyyy HH:mm'}}</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr style="height: 60px;">
+            <td>
+                <table style="width: 100%;">
+                    <tr>
+                        <td><input style="width: 100%; margin-left: 15px;;" class="chatInput" [(ngModel)]="mensagem">
+                        </td>
+                        <td style="width: 70px;"><button class="btn" (click)="enviar()">Enviar</button></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</section>

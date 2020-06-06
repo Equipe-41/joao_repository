@@ -35,6 +35,8 @@ export class VideoPlayComponent implements OnInit {
 
     this._activatedRoute.params.subscribe(params => this.id_video = params['id']);
 
+    localStorage.setItem('id_video', this.id_video);
+
     this.sub = this._videoBaseService.getPesquisaCampo('ID_VIDEO', this.id_video)
       .subscribe((consultas: Video[]) => {
 
