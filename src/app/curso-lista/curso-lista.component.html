@@ -19,6 +19,8 @@
     Cursos Cadastrados
   </p>
 
+
+  <!-- Área de pesquisa de acessibilidade -->
   <form class="col s12" [formGroup]="frm">
     <i id="arrow_down" (click)="onArrowDown()" class="material-icons dp48">zoom_in</i>
     <i id="arrow_up" (click)="onArrowUp()" style="display: none;" class="material-icons dp48">zoom_out</i>
@@ -101,14 +103,36 @@
       </div>
     </div>
 
+    <!-- Acessibilidades do Curso -->
+    <div class="row">
+      <div *ngIf="curso.LIBRAS1PLANO == 'Sim'" class="acss-icon">
+        <img src="../../assets/Icons/LIBRAS1P.PNG" alt="">
+      </div>
+      <div *ngIf="curso.LIBRAS2PLANO == 'Sim'" class="acss-icon">
+        <img src="../../assets/Icons/LIBRAS2P.PNG" alt="">
+      </div>
+      <div *ngIf="curso.LEGENDA == 'Sim'" class="acss-icon">
+        <img src="../../assets/Icons/LEGENDA.PNG" alt="">
+      </div>
+      <div *ngIf="curso.VIDEOSEMFALA == 'Sim'" class="acss-icon">
+        <img src="../../assets/Icons/VSEMFALA.PNG" alt="">
+      </div>
+      <div *ngIf="curso.ENQUADRAMENTOPARALEITURALABIAL == 'Sim'" class="acss-icon">
+        <img src="../../assets/Icons/LEITURALABIAL.PNG" alt="">
+      </div>
+    </div>
+
+    
     <!-- Título e descrição do card -->
     <div class="row">
       <div class="crd-txt col s12 m8">
         <span class="card-title">{{curso.NOME}}</span>
         <p>{{curso.DESCRICAO}}</p>
-        <p>{{curso.ACESSIBILIDADE}}</p>
+        <!--p>{{curso.ACESSIBILIDADE}}</p-->
       </div>
     </div>
+
+    
 
     <!-- Preço do curso-->
     <div class="row">
@@ -125,8 +149,13 @@
     <!-- Botões de ação do card, Caso Aluno/Interprete -->
 
     <!-- Botão de 'play' desativado por ser desnecessário nesta página -->
+<<<<<<< HEAD
     <div>
       <a *ngIf="Matriculado == 'Sim' && tipoUsuario != 'Instrutor'" style="margin-right: 50px;"
+=======
+    <div *ngIf="tipoUsuario == 'Aluno'" class="btn-div">
+      <a *ngIf="Matriculado == 'Sim'" style="margin-right: 50px;"
+>>>>>>> aa7505337be93c5e209580187b358a30e959ba1a
         class="btn-crd btn-floating btn waves-effect waves-light blue halfway-fab" data-position="top"
         data-tooltip="Vídeos" routerLink="/videoLista/{{curso.ID_CURSO}}">
         <i class="material-icons dp48">play_arrow</i>
@@ -148,7 +177,7 @@
     </div>
 
     <!-- Botões de ação do card, Caso Instrutor -->
-    <div *ngIf="tipoUsuario == 'Instrutor'">
+    <div *ngIf="tipoUsuario == 'Instrutor'" class="btn-div">
 
       <!-- Botão de Adicionar Vídeos ao Curso-->
       <a class="btn-02 btn-crd btn-floating btn waves-effect waves-light teal halfway-fab" data-position="top"

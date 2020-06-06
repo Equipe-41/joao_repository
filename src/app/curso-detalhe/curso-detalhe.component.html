@@ -1,15 +1,48 @@
-<h1>
-  Sobre o curso
-</h1>
+<div class="container">
+  <div class="row">
+    <div class="col center titlePage">
+      <p>Sobre o Curso</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="img-crs col s12 m4">
+      <img src="{{curso.URLIMAGEM}}" alt="">
+    </div>
+    <div class="col s12 m8">
+      <div class="curso-title">
+        <p>{{curso.NOME}}</p>
+      </div>
+      <div class="curso-description">
+        <p>{{curso.DESCRICAO}}</p>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="titlePage">
+    
+  </div>
+  <div>
+    
+  </div>
+  
+  <!--
+    Deveria haver um subtítulo que seria menor que a descrição e que seria exibido no
+    card. A descrição só seria exibido dentro do "Comprar Curso" e daria maior detalhes
+    sobre o curso.
+  -->
+  
 
-<div class="row">
-  <label>{{curso.NOME}}</label>
-</div>
+  <div class="curso-price">
+    <p>Valor: R$ {{curso.VALOR}}</p>
+  </div>
+  <!--
+    Seria interessante exibir aqui as características inclusivas do curso.
+    LIBRAS EM 1º PLANO,
+    LIBRAS EM SEGUNDO PLANO,
+    LEGENDA,
+    VIDEO SEM FALA,
+    ENQUADRAMENTO PARA LEITURA LABIAL.
+  -->
 
-<div class="row">
-  <label>{{curso.DESCRICAO}}</label>
-</div>
-
-<div class="row">
-  <label>{{curso.VALOR}}</label>
 </div>

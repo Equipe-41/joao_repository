@@ -18,7 +18,8 @@
 }
 
 .img-crd img{
-	margin-top: 8px;
+    margin-top: 8px;
+    margin-bottom: 8px;
 	width: 100%;
 	box-shadow: 2px 2px 10px 1px #888888;
 }
@@ -33,6 +34,17 @@
 }
 .card-gratis{
     color: red;
+}
+.acss-icon{
+    margin: auto;
+    
+}
+.acss-icon img{
+    width: 7rem;
+}
+
+.btn-div{
+    margin: auto;
 }
 
 .btn-crd {
@@ -56,14 +68,20 @@
     padding-bottom: 5vh;
 }
 
+@media only screen and (min-width: 600px) {
+    .grid-container-page {
+        grid-template-columns: 49.5% 49.5%;
+    }
+}
+
 @media only screen and (min-width: 1000px) {
     .grid-container-page {
-        grid-template-columns: 33% 34% 33%;
+        grid-template-columns: 32.95% 32.95% 32.95%;
     }
 }
 
 @media only screen and (min-width: 1500px) {
     .grid-container-page {
-        grid-template-columns: 25% 25% 25% 25%;
+        grid-template-columns: 24.65% 24.65% 24.65% 24.65%;
     }
 }
