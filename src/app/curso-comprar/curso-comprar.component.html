@@ -13,12 +13,26 @@
     card. A descrição só seria exibido dentro do "Comprar Curso" e daria maior detalhes
     sobre o curso.
   -->
+  <!-- Acessibilidades do Curso -->
+  <div class="row">
+    <div *ngIf="curso.LIBRAS1PLANO == 'Sim'" class="acss-icon">
+      <img src="../../assets/Icons/LIBRAS1P.PNG" alt="">
+    </div>
+    <div *ngIf="curso.LIBRAS2PLANO == 'Sim'" class="acss-icon">
+      <img src="../../assets/Icons/LIBRAS2P.PNG" alt="">
+    </div>
+    <div *ngIf="curso.LEGENDA == 'Sim'" class="acss-icon">
+      <img src="../../assets/Icons/LEGENDA.PNG" alt="">
+    </div>
+    <div *ngIf="curso.VIDEOSEMFALA == 'Sim'" class="acss-icon">
+      <img src="../../assets/Icons/VSEMFALA.PNG" alt="">
+    </div>
+    <div *ngIf="curso.ENQUADRAMENTOPARALEITURALABIAL == 'Sim'" class="acss-icon">
+      <img src="../../assets/Icons/LEITURALABIAL.PNG" alt="">
+    </div>
+  </div>
   <div class="curso-description">
     <p>{{curso.DESCRICAO}}</p>
-  </div>
-
-  <div class="curso-description">
-    <p>{{curso.ACESSIBILIDADE}}</p>
   </div>
 
   <div class="curso-price">

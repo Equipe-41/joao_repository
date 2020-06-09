@@ -1,7 +1,11 @@
+div{
+    margin: 0;
+    padding: 0;
+}
 .chatTabela {
     margin: 0 auto;
-    height: 90%;
     background-color: rgb(250, 244, 244);
+    height: 50vh;
 }
 
 .chatPainel {
@@ -11,32 +15,44 @@
 }
 
 .chatDestino {
-    margin: 10px;
-    width: 70%;
-    background-color: #FFF8F8;
+    margin: 0;
+    padding: 0;
+    padding-left: 4px;
+    width: 100%;
+    background-color: #Fdd;
+    margin-bottom: 8px;
 }
 
 .chatOrigem {
-    margin: 10px;
-    width: 70%;
-    background-color: #F8FAFF;
+    margin: 0;
+    padding: 0;
+    padding-right: 4px;
+    background-color: #cfc;
+    text-align: right;
+    margin-bottom: 8px;
+}
+
+.chatNome, .chatDtHr {
+    margin: 0;
+    padding: 0;
+    background-color: rgba(150,150,150,0.1);
+    font-size: 0.75rem;
+    font-weight: 600;
 }
 
 .chatMensagem {
-    font-size: 1.30rem;
-    padding: 5px;
+    margin:0;
+    padding:0;
+    font-size: 1.2rem;
 }
 
-.chatNome {
-    font-size: 0.75rem;
-    padding: 5px;
+.chatInput{
+    background-color: #fff;
+    margin-bottom: 4px;
+}
+.btn{
+    margin: 0;
+    padding: auto;
+    width: 4.8em;
 }
 
-.chatDtHr {
-    font-size: 0.75rem;
-    padding: 5px;
-}
-
-input {
-    text-transform: none !important;
-}

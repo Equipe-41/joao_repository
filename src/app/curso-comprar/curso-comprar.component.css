@@ -1,6 +1,15 @@
 img{
     width: 100%;
 }
+
+.acss-icon{
+    margin: auto;
+    
+}
+.acss-icon img{
+    width: 7rem;
+}
+
 .curso-title{
     font-size: 24pt;
     font-weight: 700;

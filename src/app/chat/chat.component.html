@@ -1,4 +1,4 @@
-<section>
+<!--section>
     <p class="titlePage">
         Chat
     </p>
@@ -48,4 +48,70 @@
             </td>
         </tr>
     </table>
-</section>
+</section-->
+
+
+
+<section>
+    <p class="titlePage">Chat</p>
+
+    <div class="chatTabela container">
+
+        <div class="chatPainel">
+
+            <div *ngFor="let chat of chatList">
+
+                <div class="row">
+                    <div class="col s8 m8">
+                        <div *ngIf="chat.ID_USUARIO != id_usuario" class="chatDestino">
+                            
+                            <div class="chatCard">
+                                <p class="chatNome">{{chat.TIPO}}: {{chat.NOME}}</p>
+                                <p class="chatMensagem">{{chat.MENSAGEM}}</p>
+                                <p class="chatDtHr">{{chat.DATACADASTRO | date:'dd/MM/yyyy HH:mm'}}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col s4 m4">
+                        
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s8 m8 offset-s4 offset-m4">
+                        <div *ngIf="chat.ID_USUARIO == id_usuario" class="chatOrigem">
+                            
+                            <div class="chatCard">
+                                <p class="chatNome">{{chat.TIPO}}: {{chat.NOME}}</p>
+                                <p class="chatMensagem">{{chat.MENSAGEM}}</p>
+                                <p class="chatDtHr">{{chat.DATACADASTRO | date:'dd/MM/yyyy HH:mm'}}</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        
+    </div>
+
+    <div class="container">
+    
+        <table>
+            <tr>
+                <td><input class="chatInput" [(ngModel)]="mensagem">
+                </td>
+                <td><button class="btn right" (click)="enviar()"><i class="material-icons">send</i></button></td>
+            </tr>
+        </table>   
+        
+    </div>
+
+
+
+
+<section>
