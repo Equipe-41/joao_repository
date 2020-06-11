@@ -1,18 +1,41 @@
 <!-- Para melhor compreensão, acompanhe os comentários -->
 
 <div class="page-container">
+
+  <!-- Imagem do curso -->
   <div class="flex-container-img">
     <img class="imgCurso" src="{{curso.URLIMAGEM}}">
   </div>
+
+  <!-- Titulo do Curso -->
   <p class="titlePage">
     {{curso.NOME}}
   </p>
+
+  <!-- Descrição do vídeo -->
   <p>
     {{curso.DESCRICAO}}
   </p>
-  <p>
-    {{curso.ACESSIBILIDADE}}
-  </p>
+  
+  <!-- Acessibilidades do Curso -->
+  <div class="row">
+    <div *ngIf="curso.LIBRAS1PLANO == 'Sim'" class="acss-icon">
+      <img src="../../assets/Icons/LIBRAS1P.PNG" alt="">
+    </div>
+    <div *ngIf="curso.LIBRAS2PLANO == 'Sim'" class="acss-icon">
+      <img src="../../assets/Icons/LIBRAS2P.PNG" alt="">
+    </div>
+    <div *ngIf="curso.LEGENDA == 'Sim'" class="acss-icon">
+      <img src="../../assets/Icons/LEGENDA.PNG" alt="">
+    </div>
+    <div *ngIf="curso.VIDEOSEMFALA == 'Sim'" class="acss-icon">
+      <img src="../../assets/Icons/VSEMFALA.PNG" alt="">
+    </div>
+    <div *ngIf="curso.ENQUADRAMENTOPARALEITURALABIAL == 'Sim'" class="acss-icon">
+      <img src="../../assets/Icons/LEITURALABIAL.PNG" alt="">
+    </div>
+  </div>
+
 </div>
 
 
@@ -36,13 +59,18 @@
       <a class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Play"
         routerLink="/videoPlay/{{video.ID_VIDEO}}"><i class="material-icons dp48">play_arrow</i></a>
     </div>
+
+    <!-- Botões caso  -->
     <div *ngIf="tipoUsuario == 'Instrutor'" class="card-content flex-container-btn">
-      <a class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Alterar"
+
+      <a class="btn-01 waves-effect waves-light blue" data-position="top" data-tooltip="Alterar"
         routerLink="/videoCadastro/{{curso.ID_CURSO}}/Alterar/{{video.ID_VIDEO}}"><i
           class="material-icons dp48">edit</i></a>
-      <a class="waves-effect waves-light btn btn-mcrs tooltipped" data-position="top" data-tooltip="Excluir"
-        (click)="onExcluir(video.ID_VIDEO)"><i class="material-icons dp48">delete</i></a>
-    </div>
 
+      <a class="btn-02 waves-effect waves-light red accent-4" data-position="top" data-tooltip="Excluir"
+        (click)="onExcluir(video.ID_VIDEO)"><i class="material-icons dp48">delete</i></a>
+
+    </div>
+ 
   </div>
 </div>

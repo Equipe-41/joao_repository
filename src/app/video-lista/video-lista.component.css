@@ -17,6 +17,16 @@
 .card-image {
     width: 100% !important;
 }
+.btn {
+    width: 4.8em !important;
+}
+.acss-icon{
+    margin: auto;
+    
+}
+.acss-icon img{
+    width: 7rem;
+}
 
 .grid-container-page {
     display: grid;

@@ -1,7 +1,7 @@
 .flex-container-btn{
     margin:auto;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 .dp48{
     font-size: 40px;

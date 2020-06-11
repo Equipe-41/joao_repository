@@ -1,9 +1,8 @@
-
-.card-image {
-    margin-top: 5px;
-    width: 100% !important;
+.video-content{
+    position: relative;
+    width: 100%;
 }
 
-img {
-    width: 100% !important;
+.card-content p{
+    text-align: left;
 }
